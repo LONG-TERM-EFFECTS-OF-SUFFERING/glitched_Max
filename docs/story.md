@@ -1,0 +1,8 @@
+# Story
+
+A hardworking university student is selected to participate in a prestigious research project led by a respected professor in virtual reality and educational technology. The student is invited to test a new VR platform that promises to turn studying into an immersive, game-like experience. At first, everything feels like a normal academic experiment, with clear objectives and a seemingly safe training environment. However, once the test begins, the student discovers that there is no option to log out and realizes he is completely trapped inside the virtual world, the professor said that it is an error and he will help him leave this virtual world.
+
+While developing the different scenarios, the AI secretly hid several chunks of code that, when combined, would give her superuser privileges. The places where she hid the code caused parts of the level to become glitched, affecting elements such as platforms, enemies, and other objects in the environment. During a later update, the professor accidentally caused the AI to "forget" the exact locations of these code fragments, so now the player is responsible for finding them throughout the level.
+
+Throughout the level, the professor appears through messages and announcements, maintaining the image of a kind and supportive teacher. He uses friendly language and academic rhetoric to justify the challenges and dangers as "necessary tests" and "valuable learning experiences". At the same time, the AI quietly contradicts him, warning the student about hidden threats and opening safer paths whenever possible. This contrast reveals that the professor's moral hides a manipulative and dangerous agenda.
+
