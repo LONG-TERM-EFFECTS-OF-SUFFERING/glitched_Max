@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dca7ksjo1venk"]
+
+[ext_resource type="PackedScene" uid="uid://baun2aw4qapo6" path="res://scenes/cube.tscn" id="1_wc87p"]
+[ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="2_fbm7b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fbm7b"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lcaa1"]
+size = Vector3(10, 0.5, 10)
+
+[node name="PlayerDemo" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 2, 8.713507)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_fbm7b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_lcaa1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
+
+[node name="Blocks" type="Node3D" parent="."]
+transform = Transform3D(0.82732576, 0.5617224, 0, -0.5617224, 0.82732576, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="Cube" parent="Blocks" instance=ExtResource("1_wc87p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1234448, -1.6546515, 0)
+
+[node name="Cube2" parent="Blocks" instance=ExtResource("1_wc87p")]
+
+[node name="Player" parent="." instance=ExtResource("2_fbm7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.5)
