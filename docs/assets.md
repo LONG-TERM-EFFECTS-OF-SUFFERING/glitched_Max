@@ -1,6 +1,5 @@
 # Assets
 
-- [Environment](https://kenney-assets.itch.io/platformer-kit).
+- [Environment](https://www.kenney.nl/assets/platformer-kit).
 
 - [Characters](https://www.kenney.nl/assets/mini-characters-1).
-
