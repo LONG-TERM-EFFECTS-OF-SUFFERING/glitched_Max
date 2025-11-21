@@ -1,16 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct3mr47srdfyr"]
+[gd_scene load_steps=5 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player_skin/player_skin.tscn" id="2_dovo2"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_x7p2l"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera_pivot", "_camera", "_skin")]
 script = ExtResource("1_8afob")
+_camera_pivot = NodePath("CameraPivot")
+_camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
+_skin = NodePath("PlayerSkin")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_x7p2l")
+[node name="PlayerSkin" parent="." instance=ExtResource("2_dovo2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_8afob")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39770508, 0)
+shape = SubResource("SphereShape3D_gmlin")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9480631, 0.31808245, 0, -0.31808245, 0.9480631, 0, 0.50832176, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+shape = SubResource("SphereShape3D_8afob")
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://hy4lkfbrkmet"]
+
+[ext_resource type="PackedScene" uid="uid://drmlbqj5cpeuc" path="res://assest/characters/models/player.glb" id="1_cvace"]
+
+[node name="PlayerSkin" instance=ExtResource("1_cvace")]
+
+[node name="Skeleton3D" parent="character-male-e" index="0"]
+bones/4/rotation = Quaternion(0, 0, -0.38268346, 0.9238795)
+bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)
