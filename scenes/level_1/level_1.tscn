@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dca7ksjo1venk"]
+[gd_scene load_steps=6 format=3 uid="uid://dca7ksjo1venk"]
 
 [ext_resource type="PackedScene" uid="uid://baun2aw4qapo6" path="res://scenes/cube.tscn" id="1_wc87p"]
 [ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="2_fbm7b"]
+[ext_resource type="PackedScene" uid="uid://dulupjoum8y5b" path="res://scenes/coin/coin.tscn" id="3_lcaa1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fbm7b"]
 size = Vector3(10, 0.5, 10)
@@ -9,7 +10,7 @@ size = Vector3(10, 0.5, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lcaa1"]
 size = Vector3(10, 0.5, 10)
 
-[node name="PlayerDemo" type="Node3D"]
+[node name="Level1" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -34,3 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1234448, -1.6546515, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_fbm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.5)
+
+[node name="Coin" parent="." instance=ExtResource("3_lcaa1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3924937, 0.9764812, 1.9104631)

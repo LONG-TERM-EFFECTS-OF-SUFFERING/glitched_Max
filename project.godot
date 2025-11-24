@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="glitched_Max"
+run/main_scene="uid://dltkk2ods40d4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameController="*res://scripts/game_controller.gd"
 
 [input]
 

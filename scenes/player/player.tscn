@@ -7,13 +7,13 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_camera_pivot", "_camera", "_skin")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "camera", "skin")]
 script = ExtResource("1_8afob")
-_camera_pivot = NodePath("CameraPivot")
-_camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
-_skin = NodePath("PlayerSkin")
+camera_pivot = NodePath("CameraPivot")
+camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
+skin = NodePath("Skin")
 
-[node name="PlayerSkin" parent="." instance=ExtResource("2_dovo2")]
+[node name="Skin" parent="." instance=ExtResource("2_dovo2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39770508, 0)
