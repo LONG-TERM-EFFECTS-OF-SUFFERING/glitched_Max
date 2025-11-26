@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dulupjoum8y5b"]
+[gd_scene load_steps=10 format=3 uid="uid://dulupjoum8y5b"]
 
 [ext_resource type="Script" uid="uid://di0oxjf0lg4jf" path="res://scenes/coin/coin.gd" id="1_5vuvm"]
 [ext_resource type="AudioStream" uid="uid://bsc38o5afbslu" path="res://assest/sounds/coin.wav" id="2_f38ba"]
@@ -28,6 +28,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_u0637"]
 resource_name = "rotate"
@@ -45,9 +57,26 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 1.5707964, 0), Vector3(0, 3.1415927, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_f38ba"]
+resource_name = "bounce"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f38ba"]
 _data = {
 &"RESET": SubResource("Animation_5vuvm"),
+&"bounce": SubResource("Animation_f38ba"),
 &"rotate": SubResource("Animation_u0637")
 }
 
@@ -68,7 +97,7 @@ root_node = NodePath("../CollisionShape3D")
 libraries = {
 &"": SubResource("AnimationLibrary_f38ba")
 }
-autoplay = "rotate"
+autoplay = "bounce"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_f38ba")

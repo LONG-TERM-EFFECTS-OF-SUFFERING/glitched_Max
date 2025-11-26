@@ -67,8 +67,8 @@ func _physics_process(delta: float) -> void:
 
 		_last_movement_direction = direction
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed * delta)
-		velocity.z = move_toward(velocity.z, 0, speed * delta)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 

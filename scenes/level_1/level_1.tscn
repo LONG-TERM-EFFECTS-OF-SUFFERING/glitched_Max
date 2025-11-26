@@ -3,27 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://baun2aw4qapo6" path="res://scenes/cube.tscn" id="1_wc87p"]
 [ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="2_fbm7b"]
 [ext_resource type="PackedScene" uid="uid://dulupjoum8y5b" path="res://scenes/coin/coin.tscn" id="3_lcaa1"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_fbm7b"]
-size = Vector3(10, 0.5, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lcaa1"]
-size = Vector3(10, 0.5, 10)
+[ext_resource type="Environment" uid="uid://cb8fpas5whplq" path="res://resources/sky.tres" id="4_igcjm"]
+[ext_resource type="MeshLibrary" uid="uid://ck4k7htwju3xa" path="res://assest/tiles.tres" id="5_jr17i"]
 
 [node name="Level1" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_fbm7b")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_lcaa1")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 2, 2)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 4.8639736, 2)
+shadow_enabled = true
 
 [node name="Blocks" type="Node3D" parent="."]
 transform = Transform3D(0.82732576, 0.5617224, 0, -0.5617224, 0.82732576, 0, 0, 0, 1, 0, 4, 0)
@@ -37,4 +24,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1234448, -1.6546515, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.5)
 
 [node name="Coin" parent="." instance=ExtResource("3_lcaa1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3924937, 0.9764812, 1.9104631)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_igcjm")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("5_jr17i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-3, 0, 5, -3, 2, 5, -3, 4, 5, -1, 4, 5, -1, 2, 5, -1, 0, 5, -65535, 0, 5, -65535, 2, 5, -65535, 4, 5)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)

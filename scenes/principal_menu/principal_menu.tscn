@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dltkk2ods40d4"]
+[gd_scene load_steps=4 format=3 uid="uid://dltkk2ods40d4"]
 
 [ext_resource type="Script" uid="uid://dv6ufl7c4u6k1" path="res://scenes/principal_menu/v_box_container.gd" id="1_knmh3"]
 [ext_resource type="PackedScene" uid="uid://c50vwh3igyt7e" path="res://scenes/principal/principal.tscn" id="2_vcag2"]
+[ext_resource type="Theme" uid="uid://ddkkfi4ojkboj" path="res://resources/button.tres" id="3_3ftm5"]
 
 [node name="PrincipalMenu" type="Node3D"]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_right = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -17,21 +31,25 @@ offset_right = 50.5
 offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 5
 script = ExtResource("1_knmh3")
 principal_scene = ExtResource("2_vcag2")
 
-[node name="NewGame" type="Button" parent="VBoxContainer"]
+[node name="NewGame" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_3ftm5")
 text = "New game"
 
-[node name="Continue" type="Button" parent="VBoxContainer"]
+[node name="Continue" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_3ftm5")
 text = "Continue"
 
-[node name="Instructions" type="Button" parent="VBoxContainer"]
+[node name="Instructions" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_3ftm5")
 text = "Instructions"
 
-[connection signal="pressed" from="VBoxContainer/NewGame" to="VBoxContainer" method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Continue" to="VBoxContainer" method="_on_continue_pressed"]
-[connection signal="pressed" from="VBoxContainer/Instructions" to="VBoxContainer" method="_on_instructions_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/NewGame" to="Control/VBoxContainer" method="_on_new_game_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Continue" to="Control/VBoxContainer" method="_on_continue_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Instructions" to="Control/VBoxContainer" method="_on_instructions_pressed"]

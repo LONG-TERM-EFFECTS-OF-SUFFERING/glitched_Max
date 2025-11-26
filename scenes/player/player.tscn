@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
-[ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player_skin/player_skin.tscn" id="2_dovo2"]
+[ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
 
@@ -11,6 +11,7 @@
 script = ExtResource("1_8afob")
 camera_pivot = NodePath("CameraPivot")
 camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
+jump_velocity = 5.0
 skin = NodePath("Skin")
 
 [node name="Skin" parent="." instance=ExtResource("2_dovo2")]
