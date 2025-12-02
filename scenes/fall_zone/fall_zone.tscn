@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpnyid2rkk0o"]
+
+[ext_resource type="Script" uid="uid://b3261r8u0g4o" path="res://scenes/fall_zone/fall_zone.gd" id="1_7fj2k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gr7q3"]
+size = Vector3(100, 1, 100)
+
+[node name="FallZone" type="Area3D"]
+collision_layer = 16
+script = ExtResource("1_7fj2k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+shape = SubResource("BoxShape3D_gr7q3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

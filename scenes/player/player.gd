@@ -1,22 +1,25 @@
 extends CharacterBody3D
 
+signal dead
+
 @export_group("Camera")
-@export var camera_pivot: Node3D
-@export var camera: Camera3D
 @export var tilt_upper_limit: float = PI / 3.0
 @export var tilt_lower_limit: float = -PI / 6.0
 @export_range(0.0, 1.0) var mouse_sensitivity: float = 0.25
 
+@onready var camera_pivot: Node3D = $CameraPivot
+@onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
+
 @export_group("Movement")
 @export var speed: float = 5.0
 @export var jump_velocity: float = 3.0
-@export var skin: Node3D
 @export var rotation_speed: float = 12.0
 
+@onready var skin: Node3D = $Skin
 @onready var _anim_player: AnimationPlayer = skin.get_node("AnimationPlayer")
 
 var _camera_input_direction := Vector2.ZERO
-var _last_movement_direction = Vector3.BACK
+var _last_movement_direction = Vector3.FORWARD
 
 
 func _ready() -> void:
@@ -60,7 +63,8 @@ func _physics_process(delta: float) -> void:
 
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (camera.global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := (camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
 	if direction.length() > 0.2:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
@@ -72,8 +76,15 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
-	skin.global_rotation.y = lerp_angle(skin.rotation.y, target_angle, rotation_speed * delta)
+	var align_axis := Vector3.UP
+	if is_on_floor():
+		align_axis = get_floor_normal()
+
+	var right_axis := align_axis.cross(_last_movement_direction).normalized()
+	var forward_axis := right_axis.cross(align_axis).normalized()
+
+	var target_basis := Basis(right_axis, align_axis, forward_axis)
+	skin.global_transform.basis = skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
 
 	if _is_jumping:
 		_anim_player.play("jump")
@@ -84,3 +95,7 @@ func _physics_process(delta: float) -> void:
 			_anim_player.play("walk")
 		else:
 			_anim_player.play("idle")
+
+func die() -> void:
+	print("emiting signal")
+	dead.emit()

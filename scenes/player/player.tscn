@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
+radius = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "camera", "skin")]
+collision_mask = 26
 script = ExtResource("1_8afob")
 camera_pivot = NodePath("CameraPivot")
 camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
@@ -15,17 +17,18 @@ jump_velocity = 5.0
 skin = NodePath("Skin")
 
 [node name="Skin" parent="." instance=ExtResource("2_dovo2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39770508, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 shape = SubResource("SphereShape3D_gmlin")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9480631, 0.31808245, 0, -0.31808245, 0.9480631, 0, 0.50832176, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0.50832176, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
 shape = SubResource("SphereShape3D_8afob")
 spring_length = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)

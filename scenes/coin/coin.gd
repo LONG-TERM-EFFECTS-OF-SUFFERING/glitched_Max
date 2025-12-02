@@ -1,14 +1,25 @@
 extends Area3D
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sound_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
-@export var sound_player: AudioStreamPlayer3D
+var coins_container: CoinsContainer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if GameController.is_coin_collected(str(get_path())):
+		queue_free()
 
 
-func _on_body_entered(_body: Node3D) -> void:
+func _on_body_entered(_body: Node3D) -> void:  # It is only listening to the "player" layer
+	coins_container.collect_coin()
+	GameController.collect_coin(str(get_path()))
+
+	set_deferred("monitoring", false)
 	sound_player.reparent(get_parent())
 	sound_player.play()
+	animation_player.play("bounce")
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	# The only animation that can finish is "bounce"
 	queue_free()
