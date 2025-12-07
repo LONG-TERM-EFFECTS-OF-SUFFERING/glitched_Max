@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=4 uid="uid://dulupjoum8y5b"]
 
 [ext_resource type="Script" uid="uid://di0oxjf0lg4jf" path="res://scenes/coin/coin.gd" id="1_5vuvm"]
-[ext_resource type="AudioStream" uid="uid://bsc38o5afbslu" path="res://assest/sounds/coin.wav" id="2_f38ba"]
-[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assest/environment/models/Textures/colormap.png" id="2_gtla7"]
+[ext_resource type="AudioStream" uid="uid://bsc38o5afbslu" path="res://assets/sounds/coin.wav" id="2_f38ba"]
+[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="2_gtla7"]
 [ext_resource type="Script" uid="uid://c76f55nhwwqnf" path="res://scenes/coin/audio_stream_player_3d.gd" id="3_gtla7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34tm8"]
@@ -145,6 +145,7 @@ autoplay = "idle"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_f38ba")
+bus = &"SFX"
 script = ExtResource("3_gtla7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct3mr47srdfyr"]
+[gd_scene load_steps=9 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
+[ext_resource type="AudioStream" uid="uid://buwdknwy2ofif" path="res://assets/sounds/footstep_grass.ogg" id="3_gmlin"]
+[ext_resource type="AudioStream" uid="uid://bl6oynt8krhyf" path="res://assets/sounds/jump.mp3" id="4_p47bc"]
+[ext_resource type="AudioStream" uid="uid://ciy3bm27c4rt2" path="res://assets/sounds/land.mp3" id="5_75vfm"]
+[ext_resource type="AudioStream" uid="uid://bmeep3qg7ih4x" path="res://assets/sounds/game_over.mp3" id="6_75vfm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
 radius = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "camera", "skin")]
+[node name="Player" type="CharacterBody3D"]
 collision_mask = 26
 script = ExtResource("1_8afob")
-camera_pivot = NodePath("CameraPivot")
-camera = NodePath("CameraPivot/SpringArm3D/Camera3D")
 jump_velocity = 5.0
-skin = NodePath("Skin")
 
 [node name="Skin" parent="." instance=ExtResource("2_dovo2")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -27,8 +28,25 @@ shape = SubResource("SphereShape3D_gmlin")
 transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0.50832176, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+collision_mask = 3
 shape = SubResource("SphereShape3D_8afob")
 spring_length = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gmlin")
+bus = &"SFX"
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p47bc")
+bus = &"SFX"
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_75vfm")
+bus = &"SFX"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_75vfm")
+bus = &"SFX"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjwrmgv1tf64l"]
+
+[ext_resource type="PackedScene" uid="uid://bvx0xsi3wb172" path="res://assets/environment/models/button-square.glb" id="1_lrmay"]
+[ext_resource type="Script" uid="uid://dm0g0uj6cjnjc" path="res://scenes/checkpoint/checkpoint.gd" id="2_qopk8"]
+[ext_resource type="AudioStream" uid="uid://bxhsksek3dqwd" path="res://assets/sounds/button.mp3" id="3_2kgby"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kgby"]
+size = Vector3(0.6, 0.1, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sg1lo"]
+size = Vector3(0.4, 0.1, 0.4)
+
+[node name="Checkpoint" instance=ExtResource("1_lrmay")]
+script = ExtResource("2_qopk8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005004883, 0.050064087, 0)
+shape = SubResource("BoxShape3D_2kgby")
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00015258789, 0.15356445, 0.0031738281)
+shape = SubResource("BoxShape3D_sg1lo")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("3_2kgby")
+bus = &"SFX"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

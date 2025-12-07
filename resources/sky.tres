@@ -1,15 +1,45 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://cb8fpas5whplq"]
+[gd_resource type="Environment" load_steps=7 format=3 uid="uid://cb8fpas5whplq"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_janvk"]
-sky_top_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
-sky_horizon_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-ground_bottom_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-ground_horizon_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
+[ext_resource type="Shader" uid="uid://bvwad1cbi0dgm" path="res://sky.gdshader" id="1_3dcc3"]
 
-[sub_resource type="Sky" id="Sky_igcjm"]
-sky_material = SubResource("ProceduralSkyMaterial_janvk")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3dcc3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_blns4"]
+noise = SubResource("FastNoiseLite_3dcc3")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2c5qy"]
+noise = SubResource("FastNoiseLite_3dcc3")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e74gk"]
+shader = ExtResource("1_3dcc3")
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_2c5qy")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_blns4")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.5
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(0.5294118, 0.6862745, 0.84313726, 1)
+shader_parameter/bottom_color = Color(0.37254903, 0.5294118, 0.6862745, 1)
+shader_parameter/sun_scatter = Color(0.42352942, 0.42352942, 0.42352942, 1)
+shader_parameter/astro_tint = Color(1, 1, 0.6862745, 1)
+shader_parameter/astro_scale = 5.000000074506
+shader_parameter/astro_intensity = 1.0
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_bmd0r"]
+sky_material = SubResource("ShaderMaterial_e74gk")
 
 [resource]
 background_mode = 2
-sky = SubResource("Sky_igcjm")
-ambient_light_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_bmd0r")
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 2
+glow_enabled = true

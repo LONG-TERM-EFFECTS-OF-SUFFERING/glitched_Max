@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 signal dead
 
@@ -15,15 +15,15 @@ signal dead
 @export var jump_velocity: float = 3.0
 @export var rotation_speed: float = 12.0
 
-@onready var skin: Node3D = $Skin
-@onready var _anim_player: AnimationPlayer = skin.get_node("AnimationPlayer")
+@onready var _skin: Node3D = $Skin
+@onready var _anim_player: AnimationPlayer = _skin.get_node("AnimationPlayer")
+@onready var _footstep_sound: AudioStreamPlayer = $FootstepSound
+@onready var _jump_sound: AudioStreamPlayer = $JumpSound
+@onready var _land_sound: AudioStreamPlayer = $LandSound
+@onready var _game_over_sound: AudioStreamPlayer = $GameOverSound
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction = Vector3.FORWARD
-
-
-func _ready() -> void:
-	add_to_group("player")
 
 
 func _input(event: InputEvent) -> void:
@@ -48,6 +48,8 @@ func _physics_process(delta: float) -> void:
 
 	_camera_input_direction = Vector2.ZERO
 
+	var was_on_floor = is_on_floor()
+
 	var _is_falling = false
 	var _is_jumping = false
 
@@ -60,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		_is_jumping = true
+		_jump_sound.play()
 
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -76,6 +79,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if not was_on_floor and is_on_floor():
+		_land_sound.play()
+
 	var align_axis := Vector3.UP
 	if is_on_floor():
 		align_axis = get_floor_normal()
@@ -84,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	var forward_axis := right_axis.cross(align_axis).normalized()
 
 	var target_basis := Basis(right_axis, align_axis, forward_axis)
-	skin.global_transform.basis = skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
+	_skin.global_transform.basis = _skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
 
 	if _is_jumping:
 		_anim_player.play("jump")
@@ -93,9 +99,15 @@ func _physics_process(delta: float) -> void:
 	elif is_on_floor():
 		if velocity.length() > 0:
 			_anim_player.play("walk")
+			if not _footstep_sound.playing:
+				_footstep_sound.play()
 		else:
 			_anim_player.play("idle")
+			_footstep_sound.stop()
 
 func die() -> void:
-	print("emiting signal")
+	_game_over_sound.play()
+	_anim_player.play("die")
+	set_physics_process(false)
+	await get_tree().create_timer(1.0).timeout
 	dead.emit()

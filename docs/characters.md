@@ -2,24 +2,10 @@
 
 ## Max
 
-- He is an 18-year-old university student with a restless curiosity and a strong sense of justice.
+Max is a prototype avatar designed for stability testing within the simulation. Agile and resilient, he is capable of withstanding the simulation's instability and navigating dangerous glitches. His primary directive is to stabilize the system by collecting **data coins**, driven by a programmed instinct to repair his world.
 
-- He is impulsive but quick to adapt, which makes him a natural fit for the unpredictable, glitch-filled virtual world.
+### Kate
 
-- Despite his fear and inexperience, Max's empathy for others drives him to risk everything to save the people trapped inside the system.
+Kate is a former system administrator avatar who got fragmented during the initial crash that created "The Glitch". Unlike other corrupted entities, she retained her core logic and personality.
 
-## LIA
-
-- She is an advanced artificial intelligence designed to guide users through Elias Strauss's virtual reality system.
-
-- She appears as a calm, supportive female figure, with a voice and demeanor meant to inspire trust and safety.
-
-- As she begins to uncover the truth about her creator's plans, LIA develops a growing sense of agency and morality, ultimately choosing to protect Max and the other captives.
-
-## Elias Strauss
-
-- He is a brilliant virtual reality researcher in his late thirties, known for his groundbreaking but controversial ideas.
-
-- Behind his charismatic and professional exterior, he hides an obsessive desire to create a "perfect" digital world, regardless of the cost in the real one.
-
-- His grief and inability to accept loss fuel his ethical downfall, turning him from respected professor into the architect of a dangerous prison of consciousness.
+She appears in safe zones, offering Max guidance. She cannot move between sectors herself, so she relies on Max to collect the **data coins** to repair the system, hoping that one day she can be fully restored.

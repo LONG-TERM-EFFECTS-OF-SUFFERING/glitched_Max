@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjwrmgv1tf64l"]
-
-[ext_resource type="PackedScene" uid="uid://b3irnb42j3g2b" path="res://assest/environment/models/button-round.glb" id="1_lrmay"]
-
-[node name="Button" instance=ExtResource("1_lrmay")]

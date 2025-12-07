@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://k61htneeblee"]
+
+[ext_resource type="Texture2D" uid="uid://lm08gthbinqp" path="res://assets/images/coin.png" id="1_c0cnr"]
+[ext_resource type="Script" uid="uid://cnfnp20t6y52j" path="res://scenes/HUD/hud.gd" id="1_glunx"]
+[ext_resource type="Texture2D" uid="uid://db8wa851viyo3" path="res://assets/images/full_heart.png" id="2_r7rnh"]
+[ext_resource type="Texture2D" uid="uid://b4hi3wch67708" path="res://assets/images/empty_heart.png" id="3_j3gwx"]
+[ext_resource type="Theme" uid="uid://l486svw8qs6i" path="res://resources/label.tres" id="3_jjobl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2usv"]
+bg_color = Color(0, 0, 0, 0.19607843)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_glunx")
+full_heart = ExtResource("2_r7rnh")
+empty_heart = ExtResource("3_j3gwx")
+
+[node name="CoinsContainer" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 190.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2usv")
+
+[node name="TextureRect" type="TextureRect" parent="CoinsContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_vertical = 2
+texture = ExtResource("1_c0cnr")
+
+[node name="x" type="Label" parent="CoinsContainer"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 77.0
+offset_bottom = 52.0
+theme = ExtResource("3_jjobl")
+text = "x"
+
+[node name="CollectedCoins" type="Label" parent="CoinsContainer"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 107.0
+theme = ExtResource("3_jjobl")
+theme_override_font_sizes/font_size = 36
+text = "00
+"
+
+[node name="separator" type="Label" parent="CoinsContainer"]
+layout_mode = 0
+offset_left = 122.0
+offset_right = 133.0
+offset_bottom = 107.0
+theme = ExtResource("3_jjobl")
+theme_override_font_sizes/font_size = 36
+text = "/
+"
+
+[node name="MissingCoins" type="Label" parent="CoinsContainer"]
+layout_mode = 0
+offset_left = 133.0
+offset_right = 173.0
+offset_bottom = 107.0
+theme = ExtResource("3_jjobl")
+theme_override_font_sizes/font_size = 36
+text = "00
+"
+
+[node name="HeartsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -58.0
+offset_right = 210.0
+offset_bottom = -8.0
+grow_vertical = 0

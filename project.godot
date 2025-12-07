@@ -69,3 +69,4 @@ test={
 3d_physics/layer_3="collectible"
 3d_physics/layer_4="enemy"
 3d_physics/layer_5="fall_zone"
+3d_physics/layer_6="decoration"
