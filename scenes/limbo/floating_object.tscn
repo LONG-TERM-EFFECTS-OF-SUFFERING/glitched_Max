@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxxs8581wxsbt"]
+
+[ext_resource type="Script" uid="uid://b1xxau7xjqr22" path="res://scenes/limbo/floating_object.gd" id="1_ysyvr"]
+[ext_resource type="PackedScene" uid="uid://cshwh3wjmmf7x" path="res://assets/environment/models/tree-pine.glb" id="2_yxhsn"]
+
+[node name="FloatingObject" type="Node3D"]
+script = ExtResource("1_ysyvr")
+
+[node name="tree-pine2" parent="." instance=ExtResource("2_yxhsn")]

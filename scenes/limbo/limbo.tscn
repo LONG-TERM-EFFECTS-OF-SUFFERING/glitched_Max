@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://08flb601t0d5"]
+
+[ext_resource type="Script" uid="uid://bddae7l1q3eg" path="res://scenes/limbo/floating_objects_spawner.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://x2i6x60ouwy7" path="res://assets/environment/other models/large_neon_platform.tscn" id="4_v5wmm"]
+[ext_resource type="Script" uid="uid://dbbvxppms7kdq" path="res://scenes/limbo/floating_stain_spawner.gd" id="5_5itkd"]
+[ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="5_xanby"]
+
+[sub_resource type="Environment" id="Environment_x7oew"]
+background_mode = 1
+background_color = Color(0.96035105, 0.96035105, 0.96035093, 1)
+ambient_light_energy = 1.5
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.025
+
+[node name="Limbo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x7oew")
+
+[node name="FloatingObjectsSpawner" type="Node3D" parent="."]
+script = ExtResource("1")
+spawn_height_max = 10.0
+object_count = 20
+
+[node name="FloatingStainSpawner" type="Node3D" parent="."]
+script = ExtResource("5_5itkd")
+spawn_radius_outer = 25.0
+spawn_radius_inner = 10.0
+sprite_count = 10
+scale_max = 2.0
+opacity_min = 0.1
+opacity_max = 0.3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 0)
+light_energy = 0.3
+
+[node name="large_neon_platform2" parent="." instance=ExtResource("4_v5wmm")]
+
+[node name="Player2" parent="." instance=ExtResource("5_xanby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.076, 0.117)
+collision_mask = 58
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.1625137, 1.1938872, 13.363986)
+fov = 89.01401

@@ -1,8 +1,8 @@
 @tool
 extends GPUParticles3D
 
-@export var spawn_radius_outer: float = 10.0  # Radio externo
-@export var spawn_radius_inner: float = 3.5  # Radio interno (nuevo)
+@export var spawn_radius_outer: float = 10.0  
+@export var spawn_radius_inner: float = 3.5  
 @export var height: float = 16.0
 @export var particles_per_second: float = 4.0
 @export var line_lifetime: float = 8.0
@@ -24,12 +24,11 @@ func _ready() -> void:
 	mat.spread = 0.0
 	mat.gravity = Vector3.ZERO
 	
-	# Emisión en anillo (entre radio interno y externo)
 	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_RING
 	mat.emission_ring_axis = Vector3.UP
 	mat.emission_ring_height = 0.0
 	mat.emission_ring_radius = spawn_radius_outer
-	mat.emission_ring_inner_radius = spawn_radius_inner  # Radio interno
+	mat.emission_ring_inner_radius = spawn_radius_inner 
 	
 	mat.initial_velocity_min = height / line_lifetime
 	mat.initial_velocity_max = height / line_lifetime
