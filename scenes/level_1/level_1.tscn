@@ -34,7 +34,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nubdk"]
-resource_name = "block-grass-large_block-grass-large"
 _surfaces = [{
 "aabb": AABB(-1.0410625, 0, -1.0410625, 2.082125, 1, 2.082125),
 "attribute_data": PackedByteArray("/zeYuf83ZYb/N5i5/zeYuf83mLn/N5i5/zeYuf83mLn/N5i5/zdlhv83mLn/N5i5/zeYuf83mLn/t5j5/7dlxv+3Zcb/t5j5/7eY+f+3mPn/t5j5/7eY+f+3mPn/t5j5/7dlxv+3mPn/t5j5/7eY+f+3mPn/t2XG/7dlxv+3Zcb/N2WG/zdlhv83ZYb/N2WG/zdlhv83ZYb/N2WG/zdlhv83ZYb/N2WG/zdlhv83ZYb/N2WG/zdlhv83ZYb/N2WG/7dlxv+3Zcb/t2XG/7dlxv+3Zcb/t2XG/7dlxv+3Zcb/t2XG/7dlxv+3Zcb/t2XG/7dlxv+3Zcb/t2XG/7dlxv83ZYb/N2WG/zdlhv83/5//N/+f/zf/n/83/5//N/+f/zf/n/83/5//N/+f/zf/n/83mLn/N/+f/zeYuf83/5//N/+f/zf/n/83/5//N5i5/zeYuf83/5//N/+f/zf/n/83mLn/N5i5/zf/n/83mLn/N5i5/zf/n/83/5//N/+f/zf/n/83mLn/N5i5/zf/n/83mLn/N5i5/zf/n/83/5//N/+f/zf/n/83ZYb/N2WG/zf/n/83/5//N/+f/zdlhv83/5//N/+f/zdlhv83/5//N/+f/zf/n/83/5//N/+f/zf/n/83ZYb/N2WG/zf/n/83/5//N2WG/zdlhv83/5//N/+f/zdlhv83/5//N/+f/zdlhv83ZYb/N2WG/zf/n/83/5//N2WG/zdlhv83ZYb/N/+f/zf/n/+3Zcb/t5j5/7dlxv+3Zcb/t2XG/7eY+f+3mPn/t2XG/7eY+f+3Zcb/t2XG/7eY+f+3Zcb/t2XG/7eY+f+3mPn/t5j5/7dlxv+3mPn/t2XG/7dlxv+3mPn/t5j5/7eY+f+3Zcb/t2XG"),
@@ -620,7 +619,7 @@ shape = SubResource("ConvexPolygonShape3D_opn7a")
 
 [node name="CoinsContainer" parent="." instance=ExtResource("5_nubdk")]
 
-[node name="Coin" parent="CoinsContainer" instance=ExtResource("3_lcaa1")]
+[node name="Coin5" parent="CoinsContainer" instance=ExtResource("3_lcaa1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Coin2" parent="CoinsContainer" instance=ExtResource("3_lcaa1")]
