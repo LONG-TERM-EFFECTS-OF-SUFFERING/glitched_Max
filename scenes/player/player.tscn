@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ct3mr47srdfyr"]
+[gd_scene load_steps=26 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bmeep3qg7ih4x" path="res://assets/sounds/game_over.mp3" id="6_75vfm"]
 [ext_resource type="Texture2D" uid="uid://b4renbg3igxrd" path="res://assets/images/sleeping_z.png" id="7_0owmy"]
 [ext_resource type="AudioStream" uid="uid://bqooq5sncl6sh" path="res://assets/sounds/dash.mp3" id="8_qek5x"]
+[ext_resource type="AudioStream" uid="uid://ccv845dgkp22j" path="res://assets/sounds/doublejump.mp3" id="9_5gtgg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
 transparency = 1
@@ -98,6 +99,7 @@ radius = 0.4
 collision_mask = 122
 script = ExtResource("1_8afob")
 jump_velocity = 5.0
+double_jump_velocity = 5.0
 
 [node name="Skin" parent="." instance=ExtResource("2_dovo2")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
@@ -156,3 +158,6 @@ bus = &"SFX"
 
 [node name="DashSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_qek5x")
+
+[node name="DoubleJumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5gtgg")

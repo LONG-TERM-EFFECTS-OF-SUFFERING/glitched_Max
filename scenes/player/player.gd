@@ -13,6 +13,8 @@ signal dead
 @export var speed: float = 5.0
 @export var jump_velocity: float = 3.0
 @export var rotation_speed: float = 12.0
+@export var max_jumps: int = 2 
+@export var double_jump_velocity: float = 4.0
 
 @export_group("Sleep System")
 @export var time_until_sleep: float = 20.0
@@ -25,6 +27,7 @@ signal dead
 @export var dash_fov_duration: float = 0.3  
 @export var dash_camera_shake: float = 0.15
 @export var max_stamina: float = 100.0
+@export var double_jump_stamina_cost: float = 15.0
 @export var dash_stamina_cost: float = 25.0
 @export var stamina_per_coin: float = 20.0
 
@@ -34,6 +37,7 @@ signal dead
 @onready var _anim_player: AnimationPlayer = _skin.get_node("AnimationPlayer")
 @onready var _footstep_sound: AudioStreamPlayer = $FootstepSound
 @onready var _jump_sound: AudioStreamPlayer = $JumpSound
+@onready var _double_jump_sound: AudioStreamPlayer = $DoubleJumpSound
 @onready var _land_sound: AudioStreamPlayer = $LandSound
 @onready var _game_over_sound: AudioStreamPlayer = $GameOverSound
 @onready var _dash_sound: AudioStreamPlayer = $DashSound
@@ -48,6 +52,7 @@ var _death_tween: Tween
 var _idle_timer: float = 0.0
 var _is_sleeping: bool = false
 var _was_moving_last_frame: bool = false
+var _jumps_remaining: int = 2
 
 var _is_dashing: bool = false
 var _dash_timer: float = 0.0
@@ -59,6 +64,7 @@ var _current_stamina: float = 50.0
 var _default_fov: float = 75.0
 var _camera_shake_offset: Vector3 = Vector3.ZERO
 var _fov_tween: Tween
+var _double_jump_trail_timer: float = 0.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter_focus"):
@@ -100,6 +106,14 @@ func _physics_process(delta: float) -> void:
 
 	if _dash_cooldown_timer > 0:
 		_dash_cooldown_timer -= delta
+		
+	if _double_jump_trail_timer > 0:
+		_double_jump_trail_timer -= delta
+		if _double_jump_trail_timer <= 0:
+			_dash_trail.emitting = false
+			
+	if is_on_floor():
+		_jumps_remaining = max_jumps
 
 	# Add the gravity
 	if not is_on_floor() and not _is_dashing:
@@ -110,10 +124,25 @@ func _physics_process(delta: float) -> void:
 			is_jumping = true
 
 	# Handle jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-		_jump_sound.play()
-		_wake_up()  
+	if Input.is_action_just_pressed("jump"):
+
+		if is_on_floor():
+			velocity.y = jump_velocity
+			_jumps_remaining = max_jumps - 1
+			_jump_sound.play()
+			_wake_up()
+
+		elif _jumps_remaining > 0 and _current_stamina >= double_jump_stamina_cost:
+			velocity.y = double_jump_velocity
+			_jumps_remaining -= 1
+			_current_stamina -= double_jump_stamina_cost
+			_update_stamina_ui()
+			_double_jump_sound.play()
+			_wake_up()
+			_show_aura()
+			_dash_trail.emitting = true
+			_double_jump_trail_timer = 0.2  
+		
 		
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
@@ -223,6 +252,8 @@ func _update_animation_state(is_jumping: bool, is_falling: bool, is_moving: bool
 	
 	if _is_dashing:
 		_anim_player.play("air-dash_001", 0.05) 
+	elif is_jumping and _jumps_remaining < max_jumps - 1:
+		_anim_player.play("double-jump", 0.1)
 	elif is_jumping:
 		_anim_player.play("jump2",0.1)
 	elif is_falling:

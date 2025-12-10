@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpamnal231r05"]
+[gd_scene load_steps=11 format=3 uid="uid://cpamnal231r05"]
 
 [ext_resource type="Environment" uid="uid://cx6vuu7d3e2fv" path="res://resources/sky_dark.tres" id="1_epnma"]
 [ext_resource type="PackedScene" uid="uid://bfpnyid2rkk0o" path="res://scenes/fall_zone/fall_zone.tscn" id="2_7nfv4"]
 [ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="2_iwtyf"]
 [ext_resource type="PackedScene" uid="uid://44adfkoyahkk" path="res://scenes/effects/rising_lines.tscn" id="3_rl6yr"]
+[ext_resource type="PackedScene" uid="uid://unirkfm42cbt" path="res://assets/environment/other models/cube_mini.tscn" id="5_iqr5q"]
 [ext_resource type="PackedScene" uid="uid://x2i6x60ouwy7" path="res://assets/environment/other models/large_neon_platform.tscn" id="5_la06y"]
+[ext_resource type="PackedScene" uid="uid://tikjm5th72at" path="res://assets/environment/other models/cube_large.tscn" id="6_57aex"]
+[ext_resource type="PackedScene" uid="uid://cswvb6a4iysk8" path="res://assets/environment/other models/block_neon_low_large_platform.tscn" id="6_rw20u"]
+[ext_resource type="PackedScene" uid="uid://b2a4nmv7notal" path="res://assets/environment/other models/large_noneon_platform.tscn" id="7_u4m3y"]
+[ext_resource type="PackedScene" uid="uid://caogkow0qe6wy" path="res://assets/environment/other models/large_noneon_platform_alt.tscn" id="10_hv3s4"]
 
 [node name="Level0" type="Node3D"]
 
@@ -35,13 +40,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 
 [node name="large_neon_platform7" parent="Platforms" instance=ExtResource("5_la06y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.45858026, 0, -2.5089734)
 
 [node name="large_neon_platform8" parent="Platforms" instance=ExtResource("5_la06y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 
 [node name="large_neon_platform9" parent="Platforms" instance=ExtResource("5_la06y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="block-neon-low-large-platform" parent="Platforms" instance=ExtResource("6_rw20u")]
+transform = Transform3D(1, 0, 0, 0, 0.8660253, 0.49999997, 0, -0.49999997, 0.8660253, -2, 2, -2)
+
+[node name="block-neon-low-large-platform6" parent="Platforms" instance=ExtResource("6_rw20u")]
+transform = Transform3D(1, 0, 0, 0, 0.15235531, 1.2136699, 0, -0.08796238, 2.102138, -2, 3.1117058, 0)
+metadata/_edit_group_ = true
+
+[node name="block-neon-low-large-platform2" parent="Platforms" instance=ExtResource("5_iqr5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="block-neon-low-large-platform3" parent="Platforms" instance=ExtResource("5_iqr5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="block-neon-low-large-platform4" parent="Platforms" instance=ExtResource("5_iqr5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="block-neon-low-large-platform5" parent="Platforms" instance=ExtResource("6_57aex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="large_neon_platform10" parent="Platforms" instance=ExtResource("7_u4m3y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2, 0, -4)
+metadata/_edit_group_ = true
+
+[node name="large_neon_platform11" parent="Platforms" instance=ExtResource("7_u4m3y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2, 0, -5)
+metadata/_edit_group_ = true
 
 [node name="Player2" parent="." instance=ExtResource("2_iwtyf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9362168, 1.0757577, 0.11674309)
@@ -51,8 +83,15 @@ collision_mask = 58
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.817072, 0)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.84121895, -0.5403895, 0.018163374, -0.002492308, -0.037467673, -0.9992948, 0.54068893, 0.84058034, -0.032865338, -2.035551, -4.9088383, -0.1609726)
-light_color = Color(0.45524192, 0.8745546, 0.97199816, 1)
-light_energy = 1.5
+transform = Transform3D(0.85223377, -0.49889663, -0.15747957, 0.3058272, 0.23086262, 0.9236732, -0.4244613, -0.83534706, 0.34932506, -2.035551, -4.1726985, -5.914261)
+light_color = Color(0.8376754, 0.86796707, 0.26056942, 1)
 light_specular = 0.0
 shadow_enabled = true
+
+[node name="large_neon_platform" parent="." instance=ExtResource("10_hv3s4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0, -4)
+metadata/_edit_group_ = true
+
+[node name="large_neon_platform2" parent="." instance=ExtResource("10_hv3s4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0, -5)
+metadata/_edit_group_ = true

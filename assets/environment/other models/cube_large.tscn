@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://tikjm5th72at"]
+
+[ext_resource type="PackedScene" uid="uid://bx2vac7i6g43s" path="res://assets/environment/models/cube-neon-large.glb" id="1_16uvf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdqp1"]
+size = Vector3(1.8, 1.8, 1.8)
+
+[node name="block-neon-low-large-platform" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="cube-neon-large" parent="." instance=ExtResource("1_16uvf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_tdqp1")

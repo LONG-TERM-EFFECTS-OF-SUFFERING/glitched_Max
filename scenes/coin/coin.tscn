@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://dulupjoum8y5b"]
+[gd_scene load_steps=15 format=4 uid="uid://dulupjoum8y5b"]
 
 [ext_resource type="Script" uid="uid://di0oxjf0lg4jf" path="res://scenes/coin/coin.gd" id="1_5vuvm"]
 [ext_resource type="AudioStream" uid="uid://bsc38o5afbslu" path="res://assets/sounds/coin.wav" id="2_f38ba"]
-[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="2_gtla7"]
+[ext_resource type="Texture2D" uid="uid://scm2g62wj6gu" path="res://assets/environment/models/Textures/coin_colormap.png" id="2_gtla7"]
 [ext_resource type="Script" uid="uid://c76f55nhwwqnf" path="res://scenes/coin/audio_stream_player_3d.gd" id="3_gtla7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34tm8"]
@@ -44,6 +44,37 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bsl56")
+
+[sub_resource type="Shader" id="Shader_f38ba"]
+code = "shader_type spatial;
+render_mode unshaded, cull_front;
+
+uniform vec4 aura_color : source_color = vec4(0.0, 1.0, 1.0, 1.0);
+uniform float aura_thickness : hint_range(0.0, 0.5) = 0.05;
+uniform float aura_intensity : hint_range(0.0, 10.0) = 2.0;
+uniform float pulse_speed : hint_range(0.0, 10.0) = 3.0;
+uniform float pulse_amount : hint_range(0.0, 0.5) = 0.02;
+
+void vertex() {
+    // Expandir el mesh hacia afuera usando las normales
+    float pulse = sin(TIME * pulse_speed) * pulse_amount;
+    VERTEX += NORMAL * (aura_thickness + pulse);
+}
+
+void fragment() {
+    ALBEDO = aura_color.rgb;
+    EMISSION = aura_color.rgb * aura_intensity;
+    ALPHA = aura_color.a;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0l3am"]
+render_priority = 0
+shader = SubResource("Shader_f38ba")
+shader_parameter/aura_color = Color(0.846904, 0.92439497, 0.9925515, 1)
+shader_parameter/aura_thickness = 0.010000000475
+shader_parameter/aura_intensity = 0.630000029925
+shader_parameter/pulse_speed = 0.0
+shader_parameter/pulse_amount = 0.01200000057
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0ifod"]
 points = PackedVector3Array(-0.17320509, 0.09996084, -0.075, -3.3915043e-05, 0, -0.075, -0.17320509, 0.09996084, 0.075, -0.17320509, 0.29996085, -0.075, -3.3915043e-05, 0, 0.075, 0.17320509, 0.09996084, -0.075, -0.17320509, 0.29996085, 0.075, -3.3915043e-05, 0.4, -0.075, 0.17320509, 0.09996084, 0.075, 0.17320509, 0.29996085, -0.075, -3.3915043e-05, 0.4, 0.075, 0.17320509, 0.29996085, 0.075)
@@ -133,6 +164,12 @@ script = ExtResource("1_5vuvm")
 [node name="Skin" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_8afc0")
 skeleton = NodePath("")
+
+[node name="Skin2" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(1.0499419, 0, 0, 0, 1.0499419, 0, 0, 0, 1.0499419, 0, -0.006864473, 0)
+mesh = SubResource("ArrayMesh_8afc0")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_0l3am")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_0ifod")

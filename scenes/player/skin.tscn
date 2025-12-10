@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1u0omr8r3fm5" path="res://assets/characters/models/player_colormap.png" id="3_ecjau"]
 [ext_resource type="Texture2D" uid="uid://b7i77k2jvuya1" path="res://assets/characters/models/player_colormap_normal.png" id="4_2pecn"]
 
-[sub_resource type="Shader" id="Shader_tm6o5"]
+[sub_resource type="Shader" id="Shader_f38ba"]
 code = "shader_type spatial;
 render_mode unshaded, cull_front;
 
@@ -28,7 +28,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0l3am"]
 render_priority = 0
-shader = SubResource("Shader_tm6o5")
+shader = SubResource("Shader_f38ba")
 shader_parameter/aura_color = Color(0.846904, 0.92439497, 0.9925515, 1)
 shader_parameter/aura_thickness = 0.010000000475
 shader_parameter/aura_intensity = 0.630000029925
@@ -89,6 +89,21 @@ bind/6/bone = -1
 bind/6/pose = Transform3D(1, -2.3354314e-15, -6.823052e-08, 2.343187e-15, 1.0000001, -3.3456967e-22, 6.823052e-08, 3.4228542e-08, 1, -1.6110345e-10, -0.34324983, 0.0023611707)
 
 [node name="PlayerSkin" instance=ExtResource("1_cvace")]
+
+[node name="Skeleton3D" parent="character-male-e_001" index="0"]
+bones/0/rotation = Quaternion(0.049398154, 3.8221966e-08, -5.2720592e-09, 0.9987792)
+bones/1/position = Vector3(0.07671108, 0.21299523, -0.013623761)
+bones/1/rotation = Quaternion(0.10184747, 0.02338914, 0.01061462, 0.9944684)
+bones/2/position = Vector3(-0.045982596, 0.2196905, 0.018121788)
+bones/2/rotation = Quaternion(0.16695453, -0.03907212, 0.010802745, 0.9851309)
+bones/3/position = Vector3(0.0047598523, 0.17713015, -0.028867599)
+bones/3/rotation = Quaternion(-0.14093469, 0.05087942, -0.010315499, 0.9886568)
+bones/4/position = Vector3(0.08429906, 0.12596731, 0.012611139)
+bones/4/rotation = Quaternion(0.17496327, 0.32216826, -0.39069068, 0.8443674)
+bones/5/position = Vector3(-0.067849524, 0.12703764, 0.017716242)
+bones/5/rotation = Quaternion(0.06775688, -0.3356881, 0.41142476, 0.844661)
+bones/6/position = Vector3(-2.7161324e-09, 0.16699994, 0.026388753)
+bones/6/rotation = Quaternion(-0.17072353, -0.014611329, 0.0014162307, 0.98520964)
 
 [node name="DashAura" type="Node3D" parent="." index="2"]
 

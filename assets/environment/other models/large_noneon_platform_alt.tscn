@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://caogkow0qe6wy"]
+
+[ext_resource type="PackedScene" uid="uid://cxuuc730fm8p8" path="res://assets/environment/models/block-noneon-large-alt.glb" id="1_oa86i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yldey"]
+size = Vector3(1.8, 1, 1.8)
+
+[node name="large_neon_platform" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_yldey")
+
+[node name="block-noneon-large-alt" parent="." instance=ExtResource("1_oa86i")]
+transform = Transform3D(0.982, 0, 0, 0, 0.982, 0, 0, 0, 0.982, 0, 0, 0)
