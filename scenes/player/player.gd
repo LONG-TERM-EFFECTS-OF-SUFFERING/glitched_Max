@@ -16,17 +16,24 @@ signal dead
 @export var jump_velocity: float = 3.0
 @export var rotation_speed: float = 12.0
 
+@export_group("Sleep System")
+@export var time_until_sleep: float = 25.0
+
 @onready var _skin: Node3D = $Skin
 @onready var _anim_player: AnimationPlayer = _skin.get_node("AnimationPlayer")
 @onready var _footstep_sound: AudioStreamPlayer = $FootstepSound
 @onready var _jump_sound: AudioStreamPlayer = $JumpSound
 @onready var _land_sound: AudioStreamPlayer = $LandSound
 @onready var _game_over_sound: AudioStreamPlayer = $GameOverSound
+@onready var _sleep_particles: GPUParticles3D = $Skin/SleepParticles
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction = Vector3.FORWARD
 var _death_tween: Tween
 
+var _idle_timer: float = 0.0
+var _is_sleeping: bool = false
+var _was_moving_last_frame: bool = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter_focus"):
@@ -41,6 +48,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if is_camera_moving:
 		_camera_input_direction = event.screen_relative * mouse_sensitivity
+	
+	if _is_sleeping:
+		if event.is_action("left") or event.is_action("right") or \
+		   event.is_action("up") or event.is_action("down") or \
+		   event.is_action("jump"):
+			if event.is_pressed():
+				_wake_up()
 
 
 func _physics_process(delta: float) -> void:
@@ -65,15 +79,22 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_velocity
 		is_jumping = true
 		_jump_sound.play()
+		_wake_up()  
 
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (_camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction.length() > 0.2:
+	var is_moving = direction.length() > 0.2
+	
+	if is_moving and not _was_moving_last_frame:
+		_wake_up()
+	
+	_was_moving_last_frame = is_moving
+
+	if is_moving:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-
 		_last_movement_direction = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -94,20 +115,12 @@ func _physics_process(delta: float) -> void:
 	var target_basis := Basis(right_axis, align_axis, forward_axis)
 	_skin.global_transform.basis = _skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
 
-	if is_jumping:
-		_anim_player.play("jump")
-	elif is_falling:
-		_anim_player.play("fall")
-	elif is_on_floor():
-		if velocity.length() > 0:
-			_anim_player.play("walk")
-			if not _footstep_sound.playing:
-				_footstep_sound.play()
-		else:
-			_anim_player.play("idle")
-			_footstep_sound.stop()
+	_update_animation_state(is_jumping, is_falling, is_moving, delta)
 
 func die() -> void:
+	_is_sleeping = false
+	_idle_timer = 0.0
+	_sleep_particles.emitting = false
 	_game_over_sound.play()
 	_anim_player.play("die")
 	set_physics_process(false)
@@ -115,6 +128,9 @@ func die() -> void:
 	dead.emit()
 	
 func die_falling() -> void:
+	_is_sleeping = false
+	_idle_timer = 0.0
+	_sleep_particles.emitting = false
 	_game_over_sound.play()
 	_anim_player.play("die_falling")
 	set_physics_process(false)
@@ -138,3 +154,61 @@ func _animate_death_camera() -> void:
 		death_camera_tilt_angle,
 		death_camera_tilt_duration
 	).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func _update_animation_state(is_jumping: bool, is_falling: bool, is_moving: bool, delta: float) -> void:
+	if _is_sleeping:
+		return
+	
+	var is_idle = is_on_floor() and not is_moving and not is_jumping and not is_falling
+	
+	if is_idle:
+		_idle_timer += delta
+		
+		if _idle_timer >= time_until_sleep:
+			_go_to_sleep()
+			return
+	else:
+		_idle_timer = 0.0
+	
+	if is_jumping:
+		_anim_player.play("jump")
+	elif is_falling:
+		_anim_player.play("fall")
+	elif is_on_floor():
+		if is_moving:
+			_anim_player.play("walk")
+			if not _footstep_sound.playing:
+				_footstep_sound.play()
+		else:
+			_anim_player.play("idle")
+			_footstep_sound.stop()
+
+func _go_to_sleep() -> void:
+	_is_sleeping = true
+	
+	if _anim_player.has_animation("sleep"):
+		_anim_player.play("sleep")
+	else:
+		print("✗ ERROR: No existe la animación 'sleep'")
+		print("Reproduciendo 'sit' como alternativa...")
+		if _anim_player.has_animation("sit"):
+			_anim_player.play("sit")
+		else:
+			_anim_player.play("idle")
+	
+	_footstep_sound.stop()
+	await get_tree().create_timer(3.5).timeout
+	if _is_sleeping:
+		_sleep_particles.emitting = true
+
+func _wake_up() -> void:
+	if not _is_sleeping:
+		return
+	
+	_is_sleeping = false
+	_idle_timer = 0.0
+	
+	_sleep_particles.restart()
+	_sleep_particles.emitting = false
+	
+	_anim_player.play("idle")

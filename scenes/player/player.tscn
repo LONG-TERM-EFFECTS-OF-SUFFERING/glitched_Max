@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct3mr47srdfyr"]
+[gd_scene load_steps=17 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
@@ -6,6 +6,50 @@
 [ext_resource type="AudioStream" uid="uid://bl6oynt8krhyf" path="res://assets/sounds/jump.mp3" id="4_p47bc"]
 [ext_resource type="AudioStream" uid="uid://ciy3bm27c4rt2" path="res://assets/sounds/land.mp3" id="5_75vfm"]
 [ext_resource type="AudioStream" uid="uid://bmeep3qg7ih4x" path="res://assets/sounds/game_over.mp3" id="6_75vfm"]
+[ext_resource type="Texture2D" uid="uid://b4renbg3igxrd" path="res://assets/images/sleeping_z.png" id="7_0owmy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_0owmy")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_0owmy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12745097, 1), 0.0, 0.0, 0, 0, Vector2(0.6633986, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gtgg"]
+curve = SubResource("Curve_0owmy")
+
+[sub_resource type="Curve" id="Curve_qek5x"]
+_data = [Vector2(0, 0.29681003), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h17s1"]
+curve = SubResource("Curve_qek5x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h17s1"]
+angle_min = -2.9999893
+angle_max = 7.000011
+direction = Vector3(0.5, 1, 0.5)
+spread = 2.0
+initial_velocity_min = 0.049999997
+initial_velocity_max = 0.049999997
+angular_velocity_min = 4.999984
+angular_velocity_max = 4.999984
+gravity = Vector3(0, 0, 0)
+scale_min = 0.79999995
+scale_max = 0.79999995
+scale_curve = SubResource("CurveTexture_h17s1")
+alpha_curve = SubResource("CurveTexture_5gtgg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_je7p5"]
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
 radius = 0.4
@@ -19,6 +63,17 @@ jump_velocity = 5.0
 
 [node name="Skin" parent="." instance=ExtResource("2_dovo2")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="SleepParticles" type="GPUParticles3D" parent="Skin"]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -0.20501375, 0.45511216, 0.20603272)
+material_override = SubResource("StandardMaterial3D_0owmy")
+emitting = false
+amount = 4
+lifetime = 9.0
+randomness = 0.3
+visibility_aabb = AABB(-1, 0, -2, 4, 4, 4)
+process_material = SubResource("ParticleProcessMaterial_h17s1")
+draw_pass_1 = SubResource("QuadMesh_je7p5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
