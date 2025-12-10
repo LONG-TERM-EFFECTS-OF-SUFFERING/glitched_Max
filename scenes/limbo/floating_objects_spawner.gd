@@ -14,17 +14,10 @@ extends Node3D
 
 
 var models_paths := [
-	"res://assets/environment/models/block-grass-low.glb",
-	"res://assets/environment/models/fence-low-broken.glb",
-	"res://assets/environment/models/crate.glb",
-	"res://assets/environment/models/barrel.glb",
-	"res://assets/environment/models/rocks.glb",
-	"res://assets/environment/models/poles.glb",
-	"res://assets/environment/models/block-grass-hexagon.glb",
-	"res://assets/environment/models/platform.glb",
-	"res://assets/environment/models/crate-strong.glb",
-	"res://assets/environment/models/spike-block.glb",
-	"res://assets/environment/models/tree-pine.glb",
+	"res://assets/environment/models/block-neon-large.glb",
+	"res://assets/environment/models/block-noneon-large.glb",
+	"res://assets/environment/models/cube-neon-large.glb",
+	"res://assets/environment/models/cube-neon-mini.glb",
 ]
 
 
@@ -59,7 +52,7 @@ func spawn_objects() -> void:
 			randf() * TAU
 		)
 		
-		# Escala aleatoria
+		# Random Scale
 		var scale_val = randf_range(scale_min, scale_max)
 		obj.scale = Vector3.ONE * scale_val
 		
@@ -98,9 +91,9 @@ func _process(delta: float) -> void:
 
 func _random_rotation_axis() -> Vector3:
 	var axes = [
-		Vector3.UP,           # Solo Y
-		Vector3.RIGHT,        # Solo X
-		Vector3.FORWARD,      # Solo Z
+		Vector3.UP,           # Only Y
+		Vector3.RIGHT,        # Only X
+		Vector3.FORWARD,      # Only Z
 		Vector3(1, 1, 0).normalized(),  
 		Vector3(1, 0, 1).normalized(),  
 		Vector3(0, 1, 1).normalized(),    

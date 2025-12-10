@@ -1,6 +1,6 @@
 class_name Kate extends Node3D
 
-@export_multiline var intro_text: String = "Max! You are here because the system is glitching..."
+@export_multiline var intro_text: String = "Max! Remember to collect coins to gain stamina and complete the level..."
 @export var head_image: Texture2D
 
 @onready var _interaction_area: Area3D = $Area3D

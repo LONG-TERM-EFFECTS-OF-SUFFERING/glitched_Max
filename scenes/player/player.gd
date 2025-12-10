@@ -377,15 +377,13 @@ func _apply_dash_camera_effects() -> void:
 func add_stamina(amount: float) -> void:
 	var old_stamina = _current_stamina
 	_current_stamina = min(_current_stamina + amount, max_stamina)
-	print("Stamina añadida: ", amount, " (", old_stamina, " -> ", _current_stamina, ")")  # Debug
 	_update_stamina_ui()
 	
 func _update_stamina_ui() -> void:
-	print("Emitiendo señal update_stamina: ", _current_stamina, "/", max_stamina)  # Debug
 	GameController.update_stamina.emit(_current_stamina, max_stamina)
 
 func _on_stamina_changed() -> void:
-	pass  # Placeholder por si necesitas reaccionar a cambios externos
+	pass  
 
 func get_stamina_percentage() -> float:
 	return (_current_stamina / max_stamina) * 100.0

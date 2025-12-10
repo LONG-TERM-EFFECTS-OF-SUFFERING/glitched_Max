@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=4 uid="uid://ijvaa5t22txi"]
 
 [ext_resource type="Script" uid="uid://bs4ho5smeb6gr" path="res://scenes/moving_platform/moving_platform.gd" id="1_evb6x"]
-[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="2_qkhht"]
+[ext_resource type="Texture2D" uid="uid://scm2g62wj6gu" path="res://assets/environment/models/Textures/coin_colormap.png" id="2_qkhht"]
 [ext_resource type="AudioStream" uid="uid://c73vlcefuskyu" path="res://assets/sounds/moving_patform.mp3" id="3_qkhht"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gtgc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34tm8"]
 resource_name = "colormap"
 cull_mode = 2
 albedo_texture = ExtResource("2_qkhht")
@@ -34,7 +34,7 @@ _surfaces = [{
 "index_count": 408,
 "index_data": PackedByteArray("OwACAAAAAAA8ADsAPAABADsAPQABADwAPAA+AD0AAQA/ADsAPgBAAD0AQAA+AD8AAQBBAD8AQQBAAD8APgBCAD8AQgADAD8AQwBEAAQABABFAEMARQAGAEMARQBGAAYARgBHAAYARgBIAEcASABJAEcASABKAEkASgAFAEkASgAHAAUASwBMAAgACABNAEsATQAKAEsATQBOAAoATgBPAAoATgBQAE8AUABRAE8AUABSAFEAUgBTAFEAUgAJAFMAVAAMAFUAVQBWAFQAVwBYAFkAWQBaAFcAWwANAA8ADwBcAFsAXQARAF4AXgBfAF0AYABhAGIAYgBjAGAAZABlAGYAZgBnAGQAaABpAGoAagAQAGgAawBsAG0AbQBuAGsAbwBwAHEAcQAOAG8ACwByAHMAcwB0AAsAdQB2AHcAdwB4AHUAeQB6AHsAewB8AHkAfQB+ABIAEgB/AH0AfwAUAH0AfwCAABQAgACBABQAgACCAIEAggCDAIEAggCEAIMAhACFAIMAhAATAIUAIgCGAIcAhwCIACIAiQCKABUAFQCLAIkAiwAXAIkAiwAWABcAFgCMABcAGQAWAIsAjAAYABcAiwCNABkAjACOABgAjQCPABkAjgAaABgAjQCQAI8AGgCRABgAkACSAI8AkACTAJIAGgCTAJEAkACUAJMAlACRAJMAlACVAJEAlAAbAJUAlgAhAJcAlwCYAJYAmQAeAJoAmgAdAJkAmwCcAJ0AnQAcAJsAngCfAKAAoAChAJ4AogCjAKQApAClAKIApgCnAKgAqAAgAKYAqQCqAKsAqwCsAKkArQCuAK8ArwCwAK0AsQCyALMAswC0ALEAtQC2AB8AHwC3ALUAuAC5ALoAugC7ALgAvAC9AL4AvgC/ALwAIwAkACUAJQAnACMAJgAoAMAAwADBACYAKgAsAMIAwgDDACoALgDEAMUAxQAwAC4AMgDGAMcAxwA0ADIANgDIAMkAyQA4ADYAOgA5AMoAygDLADoANwA1AMwAzADNADcAMQAzAM4AzgDPADEA0AAtAC8ALwDRANAA0gApACsAKwDTANIA1ADVANYA1gDXANQA"),
 "lods": [0.6069962, PackedByteArray("AAABAAIAAQADAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ADgAMAAsADQAPAAsACwAQAA4ADQARAA8AEAAPABEAEAARAA4AEgATABQAFQAWABcAFgAYABcAGQAWABUAFgAaABgAFQAbABkAGwAYABoAGwAaABkAHAAdAB4AHwAeAB0AHAAeACAAHwAdACEAIAAfACEAIAAiABwAIQAiACAAIwAkACUAJAAjACYAJQAnACMAJgAoACQAKQAnACUAKAAmACoAJQArACkAKgAsACgALQApACsALgAsACoAKwAvAC0AKgAwAC4AMQAtAC8AMgAuADAALwAzADEAMAA0ADIAMQAzADUANgAyADQANQA3ADEANAA4ADYANwA1ADkANgA4ADoAOQA6ADcAOgA5ADYA")],
-"material": SubResource("StandardMaterial3D_7gtgc"),
+"material": SubResource("StandardMaterial3D_34tm8"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
