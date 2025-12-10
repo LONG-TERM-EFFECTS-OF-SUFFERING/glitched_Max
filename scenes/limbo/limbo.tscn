@@ -1,0 +1,937 @@
+[gd_scene load_steps=6 format=3 uid="uid://08flb601t0d5"]
+
+[ext_resource type="Script" uid="uid://bddae7l1q3eg" path="res://scenes/limbo/floating_objects_spawner.gd" id="1"]
+[ext_resource type="Script" uid="uid://dbbvxppms7kdq" path="res://scenes/limbo/floating_stain_spawner.gd" id="5_5itkd"]
+[ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="5_xanby"]
+
+[sub_resource type="Environment" id="Environment_x7oew"]
+background_mode = 1
+background_color = Color(0.96035105, 0.96035105, 0.96035093, 1)
+ambient_light_energy = 1.5
+fog_light_color = Color(1, 1, 1, 1)
+fog_density = 0.025
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_745je"]
+points = PackedVector3Array(-0.75369006, 0.8749021, -1.0410625, -0.7263795, 1, -1.0000967, 0.7534865, 0.8749021, -1.0410625, -0.7263795, 0, -1.0000967, -0.95709264, 0.8749021, -0.95709264, -0.9199992, 1, -0.91999924, 0.726176, 1, -1.0000967, 0.726176, 0, -1.0000967, 0.9566853, 0.8749021, -0.95709264, -0.9199992, 0, -0.91999924, -1.0000966, 0, -0.7263795, -1.0410625, 0.8749021, -0.7536901, -1.0000966, 1, -0.7263795, 0.9195919, 1, -0.91999924, 0.9195919, 0, -0.91999924, 0.99989307, 1, -0.7263795, 1.0408589, 0.8749021, -0.7536901, 0.99989307, 0, -0.7263795, -1.0000966, 0, 0.7261758, -1.0410625, 0.8749021, 0.7534863, -1.0000966, 1, 0.7261758, 0.99989307, 1, 0.7261758, 1.0408589, 0.8749021, 0.7534863, 0.99989307, 0, 0.7261758, -0.95709264, 0.8749021, 0.95668507, -0.9199992, 0, 0.91959167, -0.9199992, 1, 0.91959167, 0.9195919, 1, 0.91959167, 0.9566853, 0.8749021, 0.95668507, 0.9195919, 0, 0.91959167, -0.75369006, 0.8749021, 1.0410625, -0.7263795, 0, 0.99989283, -0.7263795, 1, 0.99989283, 0.726176, 1, 0.99989283, 0.7534865, 0.8749021, 1.0410625, 0.726176, 0, 0.99989283)
+
+[node name="Limbo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x7oew")
+
+[node name="FloatingObjectsSpawner" type="Node3D" parent="."]
+script = ExtResource("1")
+spawn_height_max = 10.0
+object_count = 20
+
+[node name="FloatingStainSpawner" type="Node3D" parent="."]
+script = ExtResource("5_5itkd")
+spawn_radius_outer = 25.0
+spawn_radius_inner = 10.0
+sprite_count = 10
+scale_max = 2.0
+opacity_min = 0.1
+opacity_max = 0.3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 0)
+light_energy = 0.3
+
+[node name="block-grass-large7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large7"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large7/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large8"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large8/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large87" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.16299999, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large87"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large87/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large9"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large9/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large10"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large10/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large11"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large11/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large12"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large12/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large13"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large13/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large14"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large14/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large15"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large15/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large16"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large16/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large17" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large17"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large17/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large18" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large18"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large18/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large19" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large19"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large19/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large20" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large20"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large20/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large21" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large21"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large21/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large22" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large22"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large22/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large23" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large23"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large23/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large24" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large24"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large24/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large25" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large25"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large25/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large26" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large26"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large26/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large27" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large27"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large27/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large28" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large28"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large28/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large29" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large29"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large29/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large30" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large30"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large30/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large31" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large31"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large31/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large32" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 1.837, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large32"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large32/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large33" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large33"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large33/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large34" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large34"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large34/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large35" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large35"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large35/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large36" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large36"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large36/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large37" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large37"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large37/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large38" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large38"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large38/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large39" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large39"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large39/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large40" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large40"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large40/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large41" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large41"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large41/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large42" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large42"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large42/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large43" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large43"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large43/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large44" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large44"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large44/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large45" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large45"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large45/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large46" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large46"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large46/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large47" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large47"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large47/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large48" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large48"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large48/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large49" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large49"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large49/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large50" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large50"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large50/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large51" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large51"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large51/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large52" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large52"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large52/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large53" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large53"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large53/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large54" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large54"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large54/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large55" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large55"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large55/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large56" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large56"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large56/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large57" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 5.837, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large57"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large57/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large58" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 3.837, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large58"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large58/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large59" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, 7.837, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large59"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large59/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large60" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large60"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large60/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large61" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large61"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large61/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large62" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, 0)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large62"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large62/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large63" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large63"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large63/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large64" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large64"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large64/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large65" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, -2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large65"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large65/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large66" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large66"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large66/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large67" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large67"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large67/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large68" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, 2)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large68"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large68/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large69" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large69"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large69/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large70" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large70"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large70/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large71" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, 6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large71"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large71/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large72" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large72"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large72/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large73" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large73"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large73/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large74" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, 4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large74"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large74/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large75" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large75"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large75/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large76" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large76"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large76/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large77" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, 8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large77"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large77/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large78" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large78"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large78/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large79" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large79"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large79/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large80" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, -6)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large80"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large80/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large81" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large81"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large81/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large82" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large82"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large82/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large83" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, -8)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large83"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large83/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large84" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -6.163, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large84"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large84/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large85" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -8.163, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large85"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large85/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="block-grass-large86" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -4.163, 0, -4)
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large86"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large86/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_745je")
+
+[node name="Player2" parent="." instance=ExtResource("5_xanby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.076, 0.117)
+collision_mask = 58
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.1625137, 1.1938872, 13.363986)
+fov = 89.01401

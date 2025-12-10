@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://44adfkoyahkk"]
+
+[ext_resource type="Script" uid="uid://b2k1yutn1j56e" path="res://scenes/effects/particles.gd" id="1_s1ym4"]
+
+[node name="RisingLines" type="Node3D"]
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+script = ExtResource("1_s1ym4")

@@ -2,3 +2,6 @@
 .godot/
 /android/
 savegame.tres
+# Temporary files
+*.TMP
+*~RF*.TMP

@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpamnal231r05"]
+
+[ext_resource type="Environment" uid="uid://cx6vuu7d3e2fv" path="res://resources/sky_dark.tres" id="1_epnma"]
+[ext_resource type="PackedScene" uid="uid://bfpnyid2rkk0o" path="res://scenes/fall_zone/fall_zone.tscn" id="2_7nfv4"]
+[ext_resource type="PackedScene" uid="uid://ct3mr47srdfyr" path="res://scenes/player/player.tscn" id="2_iwtyf"]
+[ext_resource type="PackedScene" uid="uid://44adfkoyahkk" path="res://scenes/effects/rising_lines.tscn" id="3_rl6yr"]
+[ext_resource type="PackedScene" uid="uid://x2i6x60ouwy7" path="res://assets/environment/other models/large_neon_platform.tscn" id="5_la06y"]
+
+[node name="Level0" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_epnma")
+
+[node name="FallZone2" parent="." instance=ExtResource("2_7nfv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="large_neon_platform" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="large_neon_platform2" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="large_neon_platform3" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="large_neon_platform4" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.566183, 0, 2)
+
+[node name="large_neon_platform5" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="large_neon_platform6" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="large_neon_platform7" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="large_neon_platform8" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="large_neon_platform9" parent="Platforms" instance=ExtResource("5_la06y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="Player2" parent="." instance=ExtResource("2_iwtyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9362168, 1.0757577, 0.11674309)
+collision_mask = 58
+
+[node name="RisingLines" parent="Player2" instance=ExtResource("3_rl6yr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.817072, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.84121895, -0.5403895, 0.018163374, -0.002492308, -0.037467673, -0.9992948, 0.54068893, 0.84058034, -0.032865338, -2.035551, -4.9088383, -0.1609726)
+light_color = Color(0.45524192, 0.8745546, 0.97199816, 1)
+light_energy = 1.5
+light_specular = 0.0
+shadow_enabled = true

@@ -5,6 +5,7 @@ signal update_coins_labels
 signal lives_changed
 signal display_dialog(image: Texture2D, text: String)
 signal interaction_hint(is_visible: bool)
+signal update_stamina(current: float, maximum: float)
 
 var game: Data
 var _path: String = "res://savegame.tres"
@@ -28,7 +29,10 @@ func collect_coin(coin_id: String) -> void:
 		missing_coins_number -= 1
 		update_coins_labels.emit()
 		collected_coins.append(coin_id)
-
+		
+		var player = get_tree().get_first_node_in_group("player")
+		if player and player.has_method("add_stamina"):
+			player.add_stamina(20.0)
 
 func is_coin_collected(coin_id: String) -> bool:
 	return coin_id in collected_coins
