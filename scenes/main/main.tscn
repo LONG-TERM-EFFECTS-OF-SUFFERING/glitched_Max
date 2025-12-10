@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c50vwh3igyt7e"]
+[gd_scene load_steps=5 format=3 uid="uid://c50vwh3igyt7e"]
 
 [ext_resource type="Script" uid="uid://f4b3rnge4buq" path="res://scenes/main/main.gd" id="1_pwfmu"]
 [ext_resource type="PackedScene" uid="uid://dca7ksjo1venk" path="res://scenes/level_1/level_1.tscn" id="2_hyc66"]
+[ext_resource type="PackedScene" uid="uid://t065fasxhh71" path="res://scenes/game_over/game_over.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://bvp8criybgmgo" path="res://scenes/work_in_progress/word_in_progress.tscn" id="3_l3cfh"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_pwfmu")
-levels = Array[PackedScene]([ExtResource("2_hyc66")])
+levels = Array[PackedScene]([ExtResource("2_hyc66"), ExtResource("3_l3cfh")])
+game_over = ExtResource("3_k2fmo")

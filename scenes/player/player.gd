@@ -7,8 +7,7 @@ signal dead
 @export var tilt_lower_limit: float = -PI / 6.0
 @export_range(0.0, 1.0) var mouse_sensitivity: float = 0.25
 
-@onready var camera_pivot: Node3D = $CameraPivot
-@onready var camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
+@onready var _camera_pivot: Node3D = $CameraPivot
 
 @export_group("Movement")
 @export var speed: float = 5.0
@@ -28,9 +27,9 @@ var _last_movement_direction = Vector3.FORWARD
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter_focus"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("exit_focus"):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -42,31 +41,31 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	camera_pivot.rotation.x += _camera_input_direction.y * delta
-	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
-	camera_pivot.rotation.y -= _camera_input_direction.x * delta
+	_camera_pivot.rotation.x += _camera_input_direction.y * delta
+	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
+	_camera_pivot.rotation.y -= _camera_input_direction.x * delta
 
 	_camera_input_direction = Vector2.ZERO
 
 	var was_on_floor = is_on_floor()
 
-	var _is_falling = false
-	var _is_jumping = false
+	var is_falling = false
+	var is_jumping = false
 
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		_is_falling = true
+		is_falling = true
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-		_is_jumping = true
+		is_jumping = true
 		_jump_sound.play()
 
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction := (_camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction.length() > 0.2:
 		velocity.x = direction.x * speed
@@ -92,9 +91,9 @@ func _physics_process(delta: float) -> void:
 	var target_basis := Basis(right_axis, align_axis, forward_axis)
 	_skin.global_transform.basis = _skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
 
-	if _is_jumping:
+	if is_jumping:
 		_anim_player.play("jump")
-	elif _is_falling:
+	elif is_falling:
 		_anim_player.play("fall")
 	elif is_on_floor():
 		if velocity.length() > 0:

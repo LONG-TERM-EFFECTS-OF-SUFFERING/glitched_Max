@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://k61htneeblee"]
+[gd_scene load_steps=8 format=3 uid="uid://k61htneeblee"]
 
 [ext_resource type="Texture2D" uid="uid://lm08gthbinqp" path="res://assets/images/coin.png" id="1_c0cnr"]
 [ext_resource type="Script" uid="uid://cnfnp20t6y52j" path="res://scenes/HUD/hud.gd" id="1_glunx"]
 [ext_resource type="Texture2D" uid="uid://db8wa851viyo3" path="res://assets/images/full_heart.png" id="2_r7rnh"]
 [ext_resource type="Texture2D" uid="uid://b4hi3wch67708" path="res://assets/images/empty_heart.png" id="3_j3gwx"]
 [ext_resource type="Theme" uid="uid://l486svw8qs6i" path="res://resources/label.tres" id="3_jjobl"]
+[ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="6_j3gwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2usv"]
 bg_color = Color(0, 0, 0, 0.19607843)
@@ -14,6 +15,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,6 +83,69 @@ theme = ExtResource("3_jjobl")
 theme_override_font_sizes/font_size = 36
 text = "00
 "
+
+[node name="InteractionHint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_j3gwx")
+theme_override_font_sizes/font_size = 32
+text = "Press \"E\" to Interact"
+
+[node name="PauseLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.5
+offset_top = 11.0
+offset_right = 279.5
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_j3gwx")
+theme_override_font_sizes/font_size = 32
+text = "The game is paused, press \"p\" to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogBox" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.5
+offset_top = -48.0
+offset_right = 2.5
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="FaceImage" type="TextureRect" parent="DialogBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DialogBox/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_j3gwx")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HeartsContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

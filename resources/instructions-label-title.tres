@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bxsf6gy2wxfjo"]
+
+[ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="1_u3aqy"]
+
+[resource]
+Label/colors/font_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("1_u3aqy")

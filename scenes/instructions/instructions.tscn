@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvdu24tltwu3l"]
+
+[ext_resource type="Theme" uid="uid://bxsf6gy2wxfjo" path="res://resources/instructions-label-title.tres" id="1_urwme"]
+[ext_resource type="Theme" uid="uid://b1sj8pnulu58g" path="res://resources/instructions-label-content.tres" id="2_ubils"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr2pq"]
+content_margin_left = 25.0
+content_margin_top = 25.0
+content_margin_right = 25.0
+content_margin_bottom = 25.0
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+
+[node name="Instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.6850586
+offset_bottom = 1.625
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 2.0200195
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tr2pq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HowToPlay" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_urwme")
+text = "How to play"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Forward" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ubils")
+text = "Forward"

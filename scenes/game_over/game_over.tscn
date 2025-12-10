@@ -1,19 +1,19 @@
-[gd_scene load_steps=51 format=4 uid="uid://dltkk2ods40d4"]
+[gd_scene load_steps=51 format=4 uid="uid://t065fasxhh71"]
 
-[ext_resource type="Environment" uid="uid://cb8fpas5whplq" path="res://resources/sky.tres" id="1_3ovsr"]
-[ext_resource type="Script" uid="uid://cmbt56ndb1s4i" path="res://scenes/main_menu/main_menu.gd" id="1_5seab"]
-[ext_resource type="Script" uid="uid://dv6ufl7c4u6k1" path="res://scenes/main_menu/v_box_container.gd" id="1_knmh3"]
-[ext_resource type="Theme" uid="uid://ddkkfi4ojkboj" path="res://resources/main_menu-button.tres" id="3_3ftm5"]
-[ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="3_thkx5"]
-[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="4_uqeha"]
-[ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="6_4xg86"]
-[ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="7_4xg86"]
-[ext_resource type="AudioStream" uid="uid://dl6yw205f862m" path="res://assets/music/menus.wav" id="9_thkx5"]
+[ext_resource type="Script" uid="uid://clnfpdkuaoumn" path="res://scenes/game_over/game_over.gd" id="1_tbth1"]
+[ext_resource type="Environment" uid="uid://cb8fpas5whplq" path="res://resources/sky.tres" id="2_3iia1"]
+[ext_resource type="Script" uid="uid://ld1jkum3set4" path="res://scenes/game_over/v_box_container.gd" id="3_3mpp1"]
+[ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="3_tbth1"]
+[ext_resource type="Theme" uid="uid://7pmlvbnjr4ol" path="res://resources/game_over-button.tres" id="5_3iia1"]
+[ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="6_rcoe2"]
+[ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="7_vdnea"]
+[ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="8_7hf3m"]
+[ext_resource type="AudioStream" uid="uid://dl6yw205f862m" path="res://assets/music/menus.wav" id="9_3iia1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bryg4"]
 resource_name = "colormap"
 cull_mode = 2
-albedo_texture = ExtResource("4_uqeha")
+albedo_texture = ExtResource("7_vdnea")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ddpu7"]
@@ -31,7 +31,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wem23"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_q3edm"]
 resource_name = "block-grass-large_block-grass-large"
 _surfaces = [{
 "aabb": AABB(-1.0410625, 0, -1.0410625, 2.082125, 1, 2.082125),
@@ -50,13 +50,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ddpu7")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3ovsr"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_smh6r"]
 points = PackedVector3Array(-0.75369006, 0.8749021, -1.0410625, -0.7263795, 1, -1.0000967, 0.7534865, 0.8749021, -1.0410625, -0.7263795, 0, -1.0000967, -0.95709264, 0.8749021, -0.95709264, -0.9199992, 1, -0.91999924, 0.726176, 1, -1.0000967, 0.726176, 0, -1.0000967, 0.9566853, 0.8749021, -0.95709264, -0.9199992, 0, -0.91999924, -1.0000966, 0, -0.7263795, -1.0410625, 0.8749021, -0.7536901, -1.0000966, 1, -0.7263795, 0.9195919, 1, -0.91999924, 0.9195919, 0, -0.91999924, 0.99989307, 1, -0.7263795, 1.0408589, 0.8749021, -0.7536901, 0.99989307, 0, -0.7263795, -1.0000966, 0, 0.7261758, -1.0410625, 0.8749021, 0.7534863, -1.0000966, 1, 0.7261758, 0.99989307, 1, 0.7261758, 1.0408589, 0.8749021, 0.7534863, 0.99989307, 0, 0.7261758, -0.95709264, 0.8749021, 0.95668507, -0.9199992, 0, 0.91959167, -0.9199992, 1, 0.91959167, 0.9195919, 1, 0.91959167, 0.9566853, 0.8749021, 0.95668507, 0.9195919, 0, 0.91959167, -0.75369006, 0.8749021, 1.0410625, -0.7263795, 0, 0.99989283, -0.7263795, 1, 0.99989283, 0.726176, 1, 0.99989283, 0.7534865, 0.8749021, 1.0410625, 0.726176, 0, 0.99989283)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yen1g"]
 resource_name = "colormap"
 cull_mode = 2
-albedo_texture = ExtResource("4_uqeha")
+albedo_texture = ExtResource("7_vdnea")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gq2ho"]
@@ -74,7 +74,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5seab"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_7t46n"]
 resource_name = "tree_tree"
 _surfaces = [{
 "aabb": AABB(-0.3, 0, -0.25980762, 0.6, 0.80912, 0.51961523),
@@ -108,7 +108,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4xg86"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_af4u8"]
 resource_name = "tree_Group"
 _surfaces = [{
 "aabb": AABB(-0.48843297, 0, -0.48843297, 0.97686595, 1.12176, 0.97686595),
@@ -142,7 +142,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_thkx5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jpprx"]
 resource_name = "tree_Group2"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -176,7 +176,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_x2yjq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_yplt1"]
 resource_name = "tree_Group3"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -210,7 +210,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_lqpn7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_o7lsl"]
 resource_name = "tree_Group4"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -244,7 +244,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qel0l"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rhwjh"]
 resource_name = "tree_Group5"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -278,7 +278,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rrgl4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lw3mm"]
 resource_name = "tree_Group6"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -312,7 +312,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dn3lk"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jm0uw"]
 resource_name = "tree_Group7"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -346,7 +346,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4ujhu"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_miy8d"]
 resource_name = "tree_Group8"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -380,7 +380,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_vnpsp"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ap1hp"]
 resource_name = "tree_Group9"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -414,7 +414,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_a1gy5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_fms2u"]
 resource_name = "tree_Group10"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -448,7 +448,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bq5lc"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_fv3ow"]
 resource_name = "tree_Group11"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -482,7 +482,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xac7c"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_55kv1"]
 resource_name = "tree_Group12"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -516,7 +516,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0m3cs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_r4li6"]
 resource_name = "tree_Group13"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -550,7 +550,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_i7nm7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rnce1"]
 resource_name = "tree_Group14"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -584,7 +584,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_tfctf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_h3pux"]
 resource_name = "tree_Group15"
 _surfaces = [{
 "aabb": AABB(-0.15138273, 0, 0, 0.15138273, 0.15138271, 0.1428942),
@@ -603,13 +603,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jhoc2")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n7xlh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivioo"]
 size = Vector3(1, 1.9, 1.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6a4n"]
 resource_name = "colormap"
 cull_mode = 2
-albedo_texture = ExtResource("4_uqeha")
+albedo_texture = ExtResource("7_vdnea")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mcmmh"]
@@ -627,7 +627,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0xlsr"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_kx6fw"]
 resource_name = "flowers-tall_flowers-tall"
 _surfaces = [{
 "aabb": AABB(-0.2737295, 0, -0.30817816, 0.5459912, 0.46164054, 0.6182552),
@@ -646,12 +646,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mcmmh")
 
-[node name="MainMenu" type="Node3D"]
-script = ExtResource("1_5seab")
-rotation_speed = 0.25
+[node name="GameOver" type="Node3D"]
+script = ExtResource("1_tbth1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_3ovsr")
+environment = ExtResource("2_3iia1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.840641, 0.5413551, 0.01604235, 0.39233425, 0.5882803, 0.70710677, 0.3733585, 0.6007168, -0.7069248, 0, 6, -11)
@@ -686,14 +685,14 @@ offset_left = -279.0
 offset_right = 279.0
 offset_bottom = 183.0
 grow_horizontal = 2
-theme_override_colors/font_shadow_color = Color(0.37254903, 0.5294118, 0.37254903, 1)
-theme_override_colors/font_outline_color = Color(0.08627451, 0.73333335, 0.46666667, 1)
+theme_override_colors/font_shadow_color = Color(0.6862745, 0.37254903, 0.37254903, 1)
+theme_override_colors/font_outline_color = Color(0.93333334, 0.15294118, 0.2784314, 1)
 theme_override_constants/shadow_offset_x = 24
 theme_override_constants/shadow_offset_y = 12
 theme_override_constants/outline_size = 32
-theme_override_fonts/font = ExtResource("3_thkx5")
+theme_override_fonts/font = ExtResource("3_tbth1")
 theme_override_font_sizes/font_size = 128
-text = "Glitched Max"
+text = "Game Over"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -706,30 +705,30 @@ offset_right = 230.0
 offset_bottom = 74.0
 grow_vertical = 2
 theme_override_constants/separation = 5
-script = ExtResource("1_knmh3")
+script = ExtResource("3_3mpp1")
 
-[node name="NewGame" type="Button" parent="Control/VBoxContainer"]
+[node name="Checkpoint" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_3ftm5")
-text = "New game"
+theme = ExtResource("5_3iia1")
+text = "Checkpoint"
 
-[node name="Continue" type="Button" parent="Control/VBoxContainer"]
+[node name="MainMenu" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_3ftm5")
-text = "Continue"
+theme = ExtResource("5_3iia1")
+text = "Main Menu"
 
-[node name="Instructions" type="Button" parent="Control/VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_3ftm5")
-text = "Instructions"
+theme = ExtResource("5_3iia1")
+text = "Exit"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="Control/VBoxContainer"]
-stream = ExtResource("6_4xg86")
+stream = ExtResource("6_rcoe2")
 bus = &"SFX"
 
 [node name="block-grass-large" type="MeshInstance3D" parent="."]
 top_level = true
-mesh = SubResource("ArrayMesh_wem23")
+mesh = SubResource("ArrayMesh_q3edm")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large"]
@@ -737,89 +736,89 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_3ovsr")
+shape = SubResource("ConvexPolygonShape3D_smh6r")
 
-[node name="PlayerSkin" parent="." instance=ExtResource("7_4xg86")]
+[node name="PlayerSkin" parent="." instance=ExtResource("8_7hf3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0151966, 0.94206953)
 
 [node name="tree" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
-mesh = SubResource("ArrayMesh_5seab")
+mesh = SubResource("ArrayMesh_7t46n")
 skeleton = NodePath("")
 
 [node name="Group" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.010676e-14, 0.80912, 8.662937e-15)
-mesh = SubResource("ArrayMesh_4xg86")
+mesh = SubResource("ArrayMesh_af4u8")
 skeleton = NodePath("")
 
 [node name="Group2" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.86602545, 6.4523924e-09, 0.49999997, 0.1294095, 0.9659258, -0.22414388, -0.48296288, 0.25881904, 0.8365163, 0.5111153, 1.1527345, 0.016400479)
-mesh = SubResource("ArrayMesh_thkx5")
+mesh = SubResource("ArrayMesh_jpprx")
 skeleton = NodePath("")
 
 [node name="Group3" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.86602545, -6.4523924e-09, -0.49999997, -0.1294095, 0.9659258, -0.22414388, 0.48296288, 0.25881904, 0.8365163, 0.5825624, 1.0941086, 0.23519567)
-mesh = SubResource("ArrayMesh_x2yjq")
+mesh = SubResource("ArrayMesh_yplt1")
 skeleton = NodePath("")
 
 [node name="Group4" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.86602545, -6.4523924e-09, 0.49999997, -0.1294095, 0.9659258, 0.22414388, -0.48296288, -0.25881904, 0.8365163, 0.48929605, 1.5407366, -0.28015572)
-mesh = SubResource("ArrayMesh_lqpn7")
+mesh = SubResource("ArrayMesh_o7lsl")
 skeleton = NodePath("")
 
 [node name="Group5" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.86602545, 6.4523924e-09, -0.49999997, 0.1294095, 0.9659258, 0.22414388, 0.48296288, -0.25881904, 0.8365163, 0.56074315, 1.5993625, -0.061360527)
-mesh = SubResource("ArrayMesh_qel0l")
+mesh = SubResource("ArrayMesh_rhwjh")
 skeleton = NodePath("")
 
 [node name="Group6" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.48296297, 0.25881904, 0.8365163, -0.12940955, 0.9659258, -0.22414386, -0.8660254, -1.2904784e-08, 0.50000006, 0.20737375, 0.9847743, -0.5698956)
-mesh = SubResource("ArrayMesh_rrgl4")
+mesh = SubResource("ArrayMesh_lw3mm")
 skeleton = NodePath("")
 
 [node name="Group7" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.48296303, 0.25881904, 0.83651626, 0.12940954, 0.9659258, -0.22414386, -0.86602527, -1.2904782e-08, -0.5000002, -0.011421438, 1.0434004, -0.49844855)
-mesh = SubResource("ArrayMesh_dn3lk")
+mesh = SubResource("ArrayMesh_jm0uw")
 skeleton = NodePath("")
 
 [node name="Group8" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.48296297, -0.25881904, 0.8365163, 0.12940955, 0.9659258, 0.22414386, -0.8660254, 1.2904784e-08, 0.50000006, -0.045150258, 1.4419308, -0.58329844)
-mesh = SubResource("ArrayMesh_4ujhu")
+mesh = SubResource("ArrayMesh_miy8d")
 skeleton = NodePath("")
 
 [node name="Group9" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.48296303, -0.25881904, 0.83651626, -0.12940954, 0.9659258, 0.22414386, -0.86602527, 1.2904782e-08, -0.5000002, -0.26394543, 1.3833048, -0.5118514)
-mesh = SubResource("ArrayMesh_vnpsp")
+mesh = SubResource("ArrayMesh_ap1hp")
 skeleton = NodePath("")
 
 [node name="Group10" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.86602545, -6.4523924e-09, -0.4999999, 0.12940949, 0.9659258, -0.2241439, 0.48296282, -0.25881904, -0.8365164, -0.49955928, 1.052988, 0.104727946)
-mesh = SubResource("ArrayMesh_a1gy5")
+mesh = SubResource("ArrayMesh_fms2u")
 skeleton = NodePath("")
 
 [node name="Group11" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.86602545, 6.4523924e-09, 0.4999999, -0.12940949, 0.9659258, -0.2241439, -0.48296282, -0.25881904, -0.8365164, -0.57100636, 0.99436206, -0.11406725)
-mesh = SubResource("ArrayMesh_bq5lc")
+mesh = SubResource("ArrayMesh_fv3ow")
 skeleton = NodePath("")
 
 [node name="Group12" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.86602545, 6.4523924e-09, -0.4999999, -0.12940949, 0.9659258, 0.2241439, 0.48296282, 0.25881904, -0.8365164, -0.49715012, 1.5472388, 0.3382752)
-mesh = SubResource("ArrayMesh_xac7c")
+mesh = SubResource("ArrayMesh_55kv1")
 skeleton = NodePath("")
 
 [node name="Group13" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.86602545, -6.4523924e-09, 0.4999999, 0.12940949, 0.9659258, 0.2241439, -0.48296282, 0.25881904, -0.8365164, -0.5685972, 1.6058648, 0.11948002)
-mesh = SubResource("ArrayMesh_0m3cs")
+mesh = SubResource("ArrayMesh_r4li6")
 skeleton = NodePath("")
 
 [node name="Group14" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(-0.48296303, -0.25881904, -0.83651626, -0.12940954, 0.9659258, -0.22414386, 0.86602527, -1.2904782e-08, -0.5000002, -0.14449221, 1.257607, 0.5899863)
-mesh = SubResource("ArrayMesh_i7nm7")
+mesh = SubResource("ArrayMesh_rnce1")
 skeleton = NodePath("")
 
 [node name="Group15" type="MeshInstance3D" parent="tree"]
 transform = Transform3D(0.48296297, -0.25881904, -0.8365163, 0.12940955, 0.9659258, -0.22414386, 0.8660254, -1.2904784e-08, 0.50000006, 0.07430299, 1.316233, 0.51853925)
-mesh = SubResource("ArrayMesh_tfctf")
+mesh = SubResource("ArrayMesh_h3pux")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tree"]
@@ -828,18 +827,18 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98046875, -0.046325684)
-shape = SubResource("BoxShape3D_n7xlh")
+shape = SubResource("BoxShape3D_ivioo")
 
 [node name="flowers-tall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
-mesh = SubResource("ArrayMesh_0xlsr")
+mesh = SubResource("ArrayMesh_kx6fw")
 skeleton = NodePath("")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_thkx5")
+stream = ExtResource("9_3iia1")
 autoplay = true
 bus = &"music"
 
-[connection signal="pressed" from="Control/VBoxContainer/NewGame" to="Control/VBoxContainer" method="_on_new_game_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Continue" to="Control/VBoxContainer" method="_on_continue_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Instructions" to="Control/VBoxContainer" method="_on_instructions_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Checkpoint" to="Control/VBoxContainer" method="_on_checkpoint_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MainMenu" to="Control/VBoxContainer" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Exit" to="Control/VBoxContainer" method="_on_exit_pressed"]

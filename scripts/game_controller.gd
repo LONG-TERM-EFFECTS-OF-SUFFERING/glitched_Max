@@ -3,6 +3,8 @@ extends Node
 # Signals to notify other parts of the game about events
 signal update_coins_labels
 signal lives_changed
+signal display_dialog(image: Texture2D, text: String)
+signal interaction_hint(is_visible: bool)
 
 var game: Data
 var _path: String = "res://savegame.tres"
@@ -33,6 +35,7 @@ func is_coin_collected(coin_id: String) -> bool:
 
 func increment_level() -> void:
 	level += 1
+	reset_game_data()
 
 func decrement_lives() -> void:
 	lives -= 1
@@ -55,11 +58,17 @@ func load_game() -> void:
 		level = game.level
 		lives = game.lives
 		collected_coins = game.collected_coins
+		collected_coins_number = collected_coins.size()
 
 func reset_game_data() -> void:
-	level = 1
 	lives = 3
-	# For a hard reset (New Game), we DO want to clear coins
 	collected_coins = []
 	collected_coins_number = 0
 	missing_coins_number = 0
+	save_game()
+
+func show_dialog(image: Texture2D, text: String) -> void:
+	display_dialog.emit(image, text)
+	
+func toggle_interaction_hint(is_visible: bool) -> void:
+	interaction_hint.emit(is_visible)

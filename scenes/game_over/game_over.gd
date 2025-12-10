@@ -8,8 +8,9 @@ extends Node3D
 
 
 func _ready() -> void:
-	# Play the "sit" animation when the menu loads
-	_anim_player.play("sit")
+	# Play the "die" animation when the Game Over screen loads
+	_anim_player.play("die")
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _process(delta: float) -> void:
