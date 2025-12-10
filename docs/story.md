@@ -13,4 +13,3 @@ Max's goal is simple but dangerous:
 3. Reach the exit before running out of lives.
 
 If he fails, the simulation resets, and he must try again. Can Max conquer the glitches and escape the system?
-

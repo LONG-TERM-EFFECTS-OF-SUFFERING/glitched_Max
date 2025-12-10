@@ -12,8 +12,8 @@ func _ready() -> void:
 	total_coins = coins.size()
 
 	# Calculate how many coins are missing based on global game state
-	var already_collected = GameController.collected_coins.size()
-	GameController.missing_coins_number = total_coins - already_collected
+	_collected_coins = GameController.collected_coins.size()
+	GameController.missing_coins_number = total_coins - _collected_coins
 
 	# Assign this container reference to each coin so they can report back when collected
 	for coin in coins:

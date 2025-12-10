@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var levels: Array[PackedScene]
+@export var game_over: PackedScene
 
 var _actual_level := 1
 var _actual_level_instance: Node3D
@@ -13,34 +14,26 @@ func _ready() -> void:
 		_create_level(_actual_level)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test"):
-			GameController.save_game()
-
-
 func _create_level(level: int) -> void:
 	_actual_level_instance = levels[level - 1].instantiate()
 	add_child(_actual_level_instance)
 
-	var children = _actual_level_instance.find_children("*", "Node", true, false)
-	var player_found := false
-	var coin_container_found := false
-	var checkpoint_found := false
-	for child in children:
-		if player_found and coin_container_found and checkpoint_found:
-			break
+	# Find the Player
+	var players = _actual_level_instance.find_children("*", "Player", true, false)
+	if players:
+		players[0].dead.connect(_restart_level)
 
-		if child is Player:
-			player_found = true
-			child.dead.connect(_restart_level)
-		elif child is CoinsContainer:
-			coin_container_found = true
-			child.level_completed.connect(next_level)
-		elif child is Checkpoint:
-			checkpoint_found = true
-			child.pressed.connect(set_checkpoint)
+	# Find the CoinsContainer
+	var coin_containers = _actual_level_instance.find_children("*", "CoinsContainer", true, false)
+	if coin_containers:
+		coin_containers[0].level_completed.connect(_next_level)
 
-func set_checkpoint() -> void:
+	# Find the Checkpoint
+	var checkpoints = _actual_level_instance.find_children("*", "Checkpoint", true, false)
+	if checkpoints:
+		checkpoints[0].pressed.connect(_set_checkpoint)
+
+func _set_checkpoint() -> void:
 	GameController.save_game()
 
 func _delete_actual_level() -> void:
@@ -53,9 +46,9 @@ func _restart_level() -> void:
 		_delete_actual_level()
 		_create_level.call_deferred(_actual_level)
 	else:
-		print("the player has died") # Go to the Game Over screen
+		get_tree().change_scene_to_packed(game_over)
 
-func next_level() -> void:
+func _next_level() -> void:
 	_actual_level += 1
 	GameController.increment_level()
 	_delete_actual_level()
