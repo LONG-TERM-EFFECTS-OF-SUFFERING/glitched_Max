@@ -17,7 +17,12 @@ signal dead
 @export var rotation_speed: float = 12.0
 
 @export_group("Sleep System")
-@export var time_until_sleep: float = 25.0
+@export var time_until_sleep: float = 20.0
+
+@export_group("Dash System")
+@export var dash_speed: float = 10.0 
+@export var dash_duration: float = 0.4 
+@export var dash_cooldown: float = 1.0
 
 @onready var _skin: Node3D = $Skin
 @onready var _anim_player: AnimationPlayer = _skin.get_node("AnimationPlayer")
@@ -26,6 +31,8 @@ signal dead
 @onready var _land_sound: AudioStreamPlayer = $LandSound
 @onready var _game_over_sound: AudioStreamPlayer = $GameOverSound
 @onready var _sleep_particles: GPUParticles3D = $Skin/SleepParticles
+@onready var _dash_trail: GPUParticles3D = $Skin/DashTrail
+@onready var _dash_aura: Node3D = $Skin/DashAura/DashOutline1
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction = Vector3.FORWARD
@@ -34,6 +41,12 @@ var _death_tween: Tween
 var _idle_timer: float = 0.0
 var _is_sleeping: bool = false
 var _was_moving_last_frame: bool = false
+
+var _is_dashing: bool = false
+var _dash_timer: float = 0.0
+var _dash_cooldown_timer: float = 0.0
+var _dash_direction: Vector3 = Vector3.ZERO
+var _aura_fade_tween: Tween
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter_focus"):
@@ -69,21 +82,39 @@ func _physics_process(delta: float) -> void:
 	var is_falling = false
 	var is_jumping = false
 
+	if _dash_cooldown_timer > 0:
+		_dash_cooldown_timer -= delta
+
 	# Add the gravity
-	if not is_on_floor():
+	if not is_on_floor() and not _is_dashing:
 		velocity += get_gravity() * delta
-		is_falling = true
+		if velocity.y < 0:
+			is_falling = true
+		else:
+			is_jumping = true
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-		is_jumping = true
 		_jump_sound.play()
 		_wake_up()  
-
+		
 	# Handle WASD
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (_camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Handle dash
+	if Input.is_action_just_pressed("dash") and not is_on_floor() and _dash_cooldown_timer <= 0 and not _is_dashing:
+		_start_dash(direction if direction.length() > 0 else _last_movement_direction)
+
+	if _is_dashing:
+		_dash_timer -= delta
+		if _dash_timer <= 0:
+			_is_dashing = false
+			_dash_trail.emitting = false  
+		else:
+			velocity.x = _dash_direction.x * dash_speed
+			velocity.z = _dash_direction.z * dash_speed
+			velocity.y = 0  
 
 	var is_moving = direction.length() > 0.2
 	
@@ -92,18 +123,20 @@ func _physics_process(delta: float) -> void:
 	
 	_was_moving_last_frame = is_moving
 
-	if is_moving:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-		_last_movement_direction = direction
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+	if not _is_dashing:
+		if is_moving:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			_last_movement_direction = direction
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 
 	if not was_on_floor and is_on_floor():
 		_land_sound.play()
+		_fade_out_aura()
 
 	var align_axis := Vector3.UP
 	if is_on_floor():
@@ -170,31 +203,33 @@ func _update_animation_state(is_jumping: bool, is_falling: bool, is_moving: bool
 	else:
 		_idle_timer = 0.0
 	
-	if is_jumping:
-		_anim_player.play("jump")
+	if _is_dashing:
+		_anim_player.play("air-dash_001", 0.05) 
+	elif is_jumping:
+		_anim_player.play("jump2",0.1)
 	elif is_falling:
-		_anim_player.play("fall")
+		_anim_player.play("fall_character-male-e",0.1)
 	elif is_on_floor():
 		if is_moving:
-			_anim_player.play("walk")
+			_anim_player.play("walk",0.2)
 			if not _footstep_sound.playing:
 				_footstep_sound.play()
 		else:
-			_anim_player.play("idle")
+			_anim_player.play("idle",0.2)
 			_footstep_sound.stop()
 
 func _go_to_sleep() -> void:
 	_is_sleeping = true
 	
 	if _anim_player.has_animation("sleep"):
-		_anim_player.play("sleep")
+		_anim_player.play("sleep_001",0.3)
 	else:
 		print("✗ ERROR: No existe la animación 'sleep'")
 		print("Reproduciendo 'sit' como alternativa...")
 		if _anim_player.has_animation("sit"):
-			_anim_player.play("sit")
+			_anim_player.play("sit",0.3)
 		else:
-			_anim_player.play("idle")
+			_anim_player.play("idle",0.3)
 	
 	_footstep_sound.stop()
 	await get_tree().create_timer(3.5).timeout
@@ -211,4 +246,50 @@ func _wake_up() -> void:
 	_sleep_particles.restart()
 	_sleep_particles.emitting = false
 	
-	_anim_player.play("idle")
+	_anim_player.play("idle",0.2)
+	
+func _start_dash(direction: Vector3) -> void:
+	_is_dashing = true
+	_dash_timer = dash_duration
+	_dash_cooldown_timer = dash_cooldown
+	_dash_direction = direction.normalized()
+	_wake_up()
+	_dash_trail.emitting = true	
+	_show_aura()
+	# Sound
+	# _dash_sound.play()
+	
+func _show_aura() -> void:
+	if _aura_fade_tween:
+		_aura_fade_tween.kill()
+	
+	_dash_aura.visible = true
+	var material = _dash_aura.material_override as ShaderMaterial
+	if material:
+		var current_color: Color = material.get_shader_parameter("aura_color")
+		material.set_shader_parameter("aura_color", Color(current_color.r, current_color.g, current_color.b, 1.0))
+
+func _fade_out_aura() -> void:
+	if _aura_fade_tween:
+		_aura_fade_tween.kill()
+	
+	var material = _dash_aura.material_override as ShaderMaterial
+	if not material:
+		_dash_aura.visible = false
+		return
+	
+	_aura_fade_tween = create_tween()
+	_aura_fade_tween.set_ease(Tween.EASE_OUT)
+	_aura_fade_tween.set_trans(Tween.TRANS_CUBIC)
+	
+	var current_color: Color = material.get_shader_parameter("aura_color")	
+
+	_aura_fade_tween.tween_method(
+		func(value: float):
+			material.set_shader_parameter("aura_color", Color(current_color.r, current_color.g, current_color.b, value)),
+		current_color.a,
+		0.0,
+		1.0 
+	)
+	
+	_aura_fade_tween.tween_callback(func(): _dash_aura.visible = false)

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ddkkfi4ojkboj"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bwomlf1ufqxam"]
 
 [ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="1_5fv6m"]
 [ext_resource type="Texture2D" uid="uid://4d37obc1yqxy" path="res://assets/UI/main_menu-button-hover.png" id="2_5fv6m"]

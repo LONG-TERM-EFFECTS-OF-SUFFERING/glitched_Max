@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ct3mr47srdfyr"]
+[gd_scene load_steps=24 format=3 uid="uid://ct3mr47srdfyr"]
 
 [ext_resource type="Script" uid="uid://c3ome44jn35kw" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="2_dovo2"]
@@ -51,6 +51,43 @@ alpha_curve = SubResource("CurveTexture_5gtgg")
 [sub_resource type="QuadMesh" id="QuadMesh_je7p5"]
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qek5x"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.3529412, 0.5921569, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_5gtgg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_je7p5"]
+curve = SubResource("Curve_5gtgg")
+
+[sub_resource type="Curve" id="Curve_fm80t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gx1jg"]
+curve = SubResource("Curve_fm80t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugbui"]
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_gx1jg")
+alpha_curve = SubResource("CurveTexture_je7p5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_fcs02"]
+size = Vector2(0.3, 0.3)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
 radius = 0.4
 
@@ -74,6 +111,16 @@ randomness = 0.3
 visibility_aabb = AABB(-1, 0, -2, 4, 4, 4)
 process_material = SubResource("ParticleProcessMaterial_h17s1")
 draw_pass_1 = SubResource("QuadMesh_je7p5")
+
+[node name="DashTrail" type="GPUParticles3D" parent="Skin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12728842, 0)
+material_override = SubResource("StandardMaterial3D_qek5x")
+transparency = 0.28
+emitting = false
+amount = 60
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_ugbui")
+draw_pass_1 = SubResource("QuadMesh_fcs02")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
