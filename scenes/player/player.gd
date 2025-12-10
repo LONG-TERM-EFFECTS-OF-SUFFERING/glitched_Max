@@ -9,8 +9,6 @@ signal dead
 @export var death_camera_tilt_duration: float = 0.5
 @export var death_camera_tilt_angle: float = - PI / 2.0
 
-@onready var _camera_pivot: Node3D = $CameraPivot
-
 @export_group("Movement")
 @export var speed: float = 5.0
 @export var jump_velocity: float = 3.0
@@ -23,7 +21,12 @@ signal dead
 @export var dash_speed: float = 10.0 
 @export var dash_duration: float = 0.4 
 @export var dash_cooldown: float = 1.0
+@export var dash_fov_increase: float = 20.0 
+@export var dash_fov_duration: float = 0.3  
+@export var dash_camera_shake: float = 0.15
 
+@onready var _camera_pivot: Node3D = $CameraPivot
+@onready var _camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
 @onready var _skin: Node3D = $Skin
 @onready var _anim_player: AnimationPlayer = _skin.get_node("AnimationPlayer")
 @onready var _footstep_sound: AudioStreamPlayer = $FootstepSound
@@ -48,6 +51,10 @@ var _dash_cooldown_timer: float = 0.0
 var _dash_direction: Vector3 = Vector3.ZERO
 var _aura_fade_tween: Tween
 
+var _default_fov: float = 75.0
+var _camera_shake_offset: Vector3 = Vector3.ZERO
+var _fov_tween: Tween
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter_focus"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -69,6 +76,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.is_pressed():
 				_wake_up()
 
+func _ready() -> void:
+	_default_fov = _camera.fov
 
 func _physics_process(delta: float) -> void:
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
@@ -147,6 +156,8 @@ func _physics_process(delta: float) -> void:
 
 	var target_basis := Basis(right_axis, align_axis, forward_axis)
 	_skin.global_transform.basis = _skin.global_transform.basis.slerp(target_basis, rotation_speed * delta).orthonormalized()
+
+	_update_camera_shake(delta)
 
 	_update_animation_state(is_jumping, is_falling, is_moving, delta)
 
@@ -256,6 +267,7 @@ func _start_dash(direction: Vector3) -> void:
 	_wake_up()
 	_dash_trail.emitting = true	
 	_show_aura()
+	_apply_dash_camera_effects()
 	# Sound
 	# _dash_sound.play()
 	
@@ -293,3 +305,32 @@ func _fade_out_aura() -> void:
 	)
 	
 	_aura_fade_tween.tween_callback(func(): _dash_aura.visible = false)
+
+func _update_camera_shake(delta: float) -> void:
+	_camera_shake_offset = _camera_shake_offset.lerp(Vector3.ZERO, delta * 15.0)
+	_camera.position = _camera_shake_offset
+
+func _apply_dash_camera_effects() -> void:
+	if _fov_tween:
+		_fov_tween.kill()
+	
+	_fov_tween = create_tween()
+	_fov_tween.set_ease(Tween.EASE_OUT)
+	_fov_tween.set_trans(Tween.TRANS_CUBIC)
+	
+	_fov_tween.tween_property(_camera, "fov", _default_fov + dash_fov_increase, 0.1)
+	_fov_tween.tween_property(_camera, "fov", _default_fov, dash_fov_duration)
+	
+	var shake_tween = create_tween()
+	shake_tween.set_ease(Tween.EASE_IN_OUT)
+	shake_tween.set_trans(Tween.TRANS_SINE)
+	
+	for i in range(4):
+		var random_offset = Vector3(
+			randf_range(-dash_camera_shake, dash_camera_shake),
+			randf_range(-dash_camera_shake, dash_camera_shake),
+			0
+		)
+		shake_tween.tween_property(self, "_camera_shake_offset", random_offset, 0.05)
+		
+	shake_tween.tween_property(self, "_camera_shake_offset", Vector3.ZERO, 0.1)

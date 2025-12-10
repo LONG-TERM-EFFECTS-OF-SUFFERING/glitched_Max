@@ -363,6 +363,22 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_fbm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+tilt_upper_limit = null
+tilt_lower_limit = null
+mouse_sensitivity = null
+death_camera_tilt_duration = null
+death_camera_tilt_angle = null
+walk_bob_speed = null
+walk_bob_amount = null
+dash_fov_increase = null
+dash_fov_duration = null
+dash_camera_shake = null
+speed = null
+rotation_speed = null
+time_until_sleep = null
+dash_speed = null
+dash_duration = null
+dash_cooldown = null
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_0lhw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 2.5)

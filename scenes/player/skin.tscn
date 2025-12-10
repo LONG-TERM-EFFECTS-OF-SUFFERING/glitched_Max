@@ -29,7 +29,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0l3am"]
 render_priority = 0
 shader = SubResource("Shader_tm6o5")
-shader_parameter/aura_color = Color(0.7412764, 0.83250296, 0.9783507, 1)
+shader_parameter/aura_color = Color(0.846904, 0.92439497, 0.9925515, 1)
 shader_parameter/aura_thickness = 0.010000000475
 shader_parameter/aura_intensity = 0.630000029925
 shader_parameter/pulse_speed = 0.0
