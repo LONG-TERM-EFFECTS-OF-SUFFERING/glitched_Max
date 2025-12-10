@@ -24,6 +24,9 @@ signal dead
 @export var dash_fov_increase: float = 20.0 
 @export var dash_fov_duration: float = 0.3  
 @export var dash_camera_shake: float = 0.15
+@export var max_stamina: float = 100.0
+@export var dash_stamina_cost: float = 25.0
+@export var stamina_per_coin: float = 20.0
 
 @onready var _camera_pivot: Node3D = $CameraPivot
 @onready var _camera: Camera3D = $CameraPivot/SpringArm3D/Camera3D
@@ -33,6 +36,7 @@ signal dead
 @onready var _jump_sound: AudioStreamPlayer = $JumpSound
 @onready var _land_sound: AudioStreamPlayer = $LandSound
 @onready var _game_over_sound: AudioStreamPlayer = $GameOverSound
+@onready var _dash_sound: AudioStreamPlayer = $DashSound
 @onready var _sleep_particles: GPUParticles3D = $Skin/SleepParticles
 @onready var _dash_trail: GPUParticles3D = $Skin/DashTrail
 @onready var _dash_aura: Node3D = $Skin/DashAura/DashOutline1
@@ -50,6 +54,7 @@ var _dash_timer: float = 0.0
 var _dash_cooldown_timer: float = 0.0
 var _dash_direction: Vector3 = Vector3.ZERO
 var _aura_fade_tween: Tween
+var _current_stamina: float = 50.0
 
 var _default_fov: float = 75.0
 var _camera_shake_offset: Vector3 = Vector3.ZERO
@@ -78,6 +83,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	_default_fov = _camera.fov
+	_current_stamina = max_stamina / 2.0  
+	GameController.update_stamina.connect(_on_stamina_changed)
 
 func _physics_process(delta: float) -> void:
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
@@ -112,7 +119,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (_camera_pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# Handle dash
-	if Input.is_action_just_pressed("dash") and not is_on_floor() and _dash_cooldown_timer <= 0 and not _is_dashing:
+	if Input.is_action_just_pressed("dash") and not is_on_floor() and _dash_cooldown_timer <= 0 and not _is_dashing and _current_stamina >= dash_stamina_cost:
 		_start_dash(direction if direction.length() > 0 else _last_movement_direction)
 
 	if _is_dashing:
@@ -264,12 +271,13 @@ func _start_dash(direction: Vector3) -> void:
 	_dash_timer = dash_duration
 	_dash_cooldown_timer = dash_cooldown
 	_dash_direction = direction.normalized()
+	_current_stamina -= dash_stamina_cost
+	_update_stamina_ui()
 	_wake_up()
 	_dash_trail.emitting = true	
 	_show_aura()
 	_apply_dash_camera_effects()
-	# Sound
-	# _dash_sound.play()
+	_dash_sound.play()
 	
 func _show_aura() -> void:
 	if _aura_fade_tween:
@@ -334,3 +342,19 @@ func _apply_dash_camera_effects() -> void:
 		shake_tween.tween_property(self, "_camera_shake_offset", random_offset, 0.05)
 		
 	shake_tween.tween_property(self, "_camera_shake_offset", Vector3.ZERO, 0.1)
+
+func add_stamina(amount: float) -> void:
+	var old_stamina = _current_stamina
+	_current_stamina = min(_current_stamina + amount, max_stamina)
+	print("Stamina añadida: ", amount, " (", old_stamina, " -> ", _current_stamina, ")")  # Debug
+	_update_stamina_ui()
+	
+func _update_stamina_ui() -> void:
+	print("Emitiendo señal update_stamina: ", _current_stamina, "/", max_stamina)  # Debug
+	GameController.update_stamina.emit(_current_stamina, max_stamina)
+
+func _on_stamina_changed() -> void:
+	pass  # Placeholder por si necesitas reaccionar a cambios externos
+
+func get_stamina_percentage() -> float:
+	return (_current_stamina / max_stamina) * 100.0

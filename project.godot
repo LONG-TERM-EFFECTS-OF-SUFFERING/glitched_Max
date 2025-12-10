@@ -19,6 +19,10 @@ config/icon="uid://cyvwimibe3h5c"
 
 GameController="*res://scripts/game_controller.gd"
 
+[global_group]
+
+player=""
+
 [input]
 
 left={
