@@ -37,17 +37,6 @@ opacity_max = 0.3
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 0)
 light_energy = 0.3
 
-[node name="block-grass-large6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -0.163, 0, 0)
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large6"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="block-grass-large6/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_745je")
-
 [node name="block-grass-large7" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9987017, 0.050941497, 0, -0.050941497, 0.9987017, -2.163, 0, 0)
 skeleton = NodePath("")

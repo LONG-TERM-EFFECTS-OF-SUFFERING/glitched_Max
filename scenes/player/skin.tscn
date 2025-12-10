@@ -90,21 +90,6 @@ bind/6/pose = Transform3D(1, -2.3354314e-15, -6.823052e-08, 2.343187e-15, 1.0000
 
 [node name="PlayerSkin" instance=ExtResource("1_cvace")]
 
-[node name="Skeleton3D" parent="character-male-e_001" index="0"]
-bones/0/rotation = Quaternion(0.049398158, 3.418677e-08, 1.6908275e-09, 0.99877924)
-bones/1/position = Vector3(0.07910001, 0.22099985, -0.086699955)
-bones/1/rotation = Quaternion(0.6087614, -3.02912e-09, 2.3243263e-09, 0.7933534)
-bones/2/position = Vector3(-0.06474149, 0.23366244, -0.084752575)
-bones/2/rotation = Quaternion(0.5512419, -2.247075e-08, 4.8663086e-08, 0.8343455)
-bones/3/position = Vector3(1.9681365e-09, 0.17624989, -0.028749924)
-bones/3/rotation = Quaternion(0.100125365, 2.9294029e-08, 9.802183e-09, 0.99497485)
-bones/4/position = Vector3(0.09989678, 0.11150002, 0.011499897)
-bones/4/rotation = Quaternion(0.9390417, -0.06265917, -0.19026247, 0.27941865)
-bones/5/position = Vector3(-0.09989678, 0.11150001, 0.011499858)
-bones/5/rotation = Quaternion(0.9366259, 0.059211366, 0.20181912, 0.28016964)
-bones/6/position = Vector3(-3.3603718e-09, 0.16699997, 0.026388751)
-bones/6/rotation = Quaternion(8.8817837e-16, -2.955527e-08, -1.9229456e-15, 1)
-
 [node name="DashAura" type="Node3D" parent="." index="2"]
 
 [node name="DashOutline1" type="MeshInstance3D" parent="DashAura" index="0"]
