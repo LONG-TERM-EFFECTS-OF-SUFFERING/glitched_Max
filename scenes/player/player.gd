@@ -6,6 +6,8 @@ signal dead
 @export var tilt_upper_limit: float = PI / 3.0
 @export var tilt_lower_limit: float = -PI / 6.0
 @export_range(0.0, 1.0) var mouse_sensitivity: float = 0.25
+@export var death_camera_tilt_duration: float = 0.5
+@export var death_camera_tilt_angle: float = - PI / 2.0
 
 @onready var _camera_pivot: Node3D = $CameraPivot
 
@@ -23,6 +25,7 @@ signal dead
 
 var _camera_input_direction := Vector2.ZERO
 var _last_movement_direction = Vector3.FORWARD
+var _death_tween: Tween
 
 
 func _input(event: InputEvent) -> void:
@@ -110,3 +113,28 @@ func die() -> void:
 	set_physics_process(false)
 	await get_tree().create_timer(1.0).timeout
 	dead.emit()
+	
+func die_falling() -> void:
+	_game_over_sound.play()
+	_anim_player.play("die_falling")
+	set_physics_process(false)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_animate_death_camera()
+	
+	await get_tree().create_timer(1.0).timeout
+	dead.emit()
+
+func _animate_death_camera() -> void:
+	if _death_tween:
+		_death_tween.kill()
+	
+	_death_tween = create_tween()
+	_death_tween.set_parallel(true)
+	
+	_death_tween.tween_property(
+		_camera_pivot,
+		"rotation:x",
+		death_camera_tilt_angle,
+		death_camera_tilt_duration
+	).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)

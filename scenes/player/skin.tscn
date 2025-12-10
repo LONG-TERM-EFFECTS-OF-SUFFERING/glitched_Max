@@ -5,5 +5,11 @@
 [node name="PlayerSkin" instance=ExtResource("1_cvace")]
 
 [node name="Skeleton3D" parent="character-male-e" index="0"]
-bones/4/rotation = Quaternion(0, 0, -0.3826835, 0.92387956)
-bones/5/rotation = Quaternion(0, 0, 0.3826835, 0.92387956)
+bones/1/rotation = Quaternion(-4.34492e-40, -1.4687576e-09, 5.916457e-31, 1)
+bones/2/rotation = Quaternion(-4.34492e-40, -1.4687578e-09, 5.916457e-31, 1)
+bones/3/rotation = Quaternion(-1.9721525e-31, 1.4940496e-09, 7.888609e-31, 1)
+bones/4/position = Vector3(0.09989679, 0.11150001, 0.011499885)
+bones/4/rotation = Quaternion(-2.865307e-09, -1.1868506e-09, -0.38268346, 0.92387956)
+bones/5/position = Vector3(-0.09989679, 0.11150001, 0.011499878)
+bones/5/rotation = Quaternion(-2.865308e-09, 1.1868474e-09, 0.38268346, 0.92387956)
+bones/6/rotation = Quaternion(5.916457e-31, -1.5506956e-09, 6.902533e-31, 1)
