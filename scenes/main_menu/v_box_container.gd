@@ -2,6 +2,8 @@ extends VBoxContainer
 
 @onready var _click_sound: AudioStreamPlayer = $ClickSound
 
+const INSTRUCTIONS_SCENE = preload("res://scenes/instructions/instructions.tscn")
+
 
 func _on_new_game_pressed() -> void:
 	_click_sound.play()
@@ -20,3 +22,5 @@ func _on_continue_pressed() -> void:
 func _on_instructions_pressed() -> void:
 	_click_sound.play()
 	await _click_sound.finished
+	var instructions = INSTRUCTIONS_SCENE.instantiate()
+	get_tree().current_scene.add_child(instructions)

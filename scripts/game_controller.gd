@@ -35,7 +35,6 @@ func is_coin_collected(coin_id: String) -> bool:
 
 func increment_level() -> void:
 	level += 1
-	reset_game_data()
 
 func decrement_lives() -> void:
 	lives -= 1
@@ -60,11 +59,18 @@ func load_game() -> void:
 		collected_coins = game.collected_coins
 		collected_coins_number = collected_coins.size()
 
-func reset_game_data() -> void:
+func reset_level_data() -> void:
 	lives = 3
 	collected_coins = []
 	collected_coins_number = 0
 	missing_coins_number = 0
+
+func reset_level() -> void:
+	level = 1
+
+func  reset_game_data() -> void:
+	reset_level()
+	reset_level_data()
 	save_game()
 
 func show_dialog(image: Texture2D, text: String) -> void:

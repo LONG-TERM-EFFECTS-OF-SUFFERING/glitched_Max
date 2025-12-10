@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvdu24tltwu3l"]
+[gd_scene load_steps=16 format=3 uid="uid://cvdu24tltwu3l"]
 
+[ext_resource type="Script" uid="uid://bgm0c31cf166e" path="res://scenes/instructions/instructions.gd" id="1_eting"]
 [ext_resource type="Theme" uid="uid://bxsf6gy2wxfjo" path="res://resources/instructions-label-title.tres" id="1_urwme"]
+[ext_resource type="Theme" uid="uid://b6wr680imqggl" path="res://resources/instructions-label-subtitle.tres" id="2_248l8"]
 [ext_resource type="Theme" uid="uid://b1sj8pnulu58g" path="res://resources/instructions-label-content.tres" id="2_ubils"]
+[ext_resource type="Theme" uid="uid://cpn55t71btrb3" path="res://resources/instructions-button.tres" id="4_248l8"]
+[ext_resource type="Texture2D" uid="uid://361vaq1qx0je" path="res://assets/images/controls_sprite_sheet.png" id="4_d3uck"]
+[ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="7_7o006"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr2pq"]
 content_margin_left = 25.0
 content_margin_top = 25.0
 content_margin_right = 25.0
 content_margin_bottom = 25.0
-bg_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.7058824)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -16,6 +21,34 @@ border_width_bottom = 10
 border_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
 corner_radius_top_left = 50
 corner_radius_bottom_right = 50
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eting"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(15, 915, 70, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o006"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(915, 215, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmaaa"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(915, 720, 70, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpmoq"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(315, 115, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41rcl"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(405, 830, 90, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8g7v"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(115, 315, 70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi0ub"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(915, 615, 70, 70)
 
 [node name="Instructions" type="Control"]
 layout_mode = 3
@@ -26,6 +59,7 @@ offset_right = 2.6850586
 offset_bottom = 1.625
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_eting")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -45,13 +79,158 @@ layout_mode = 2
 theme = ExtResource("1_urwme")
 text = "How to play"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/h_separation = 16
+columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ControlsContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Forward" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Controls" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_248l8")
+text = "Controls"
+
+[node name="MoveForward" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveForward"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Move forward"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveForward"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_eting")
+expand_mode = 2
+
+[node name="MoveRight" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Move right"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveRight"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7o006")
+expand_mode = 2
+
+[node name="MoveBackward" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveBackward"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Move backward"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveBackward"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cmaaa")
+expand_mode = 2
+
+[node name="MoveLeft" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveLeft"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Move left"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/MoveLeft"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wpmoq")
+expand_mode = 2
+
+[node name="Jump" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Jump"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Jump"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Jump"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_41rcl")
+
+[node name="Interact" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Interact"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Interact"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Interact"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_r8g7v")
+expand_mode = 2
+
+[node name="Pause" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Pause"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Pause"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Pause"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_oi0ub")
+expand_mode = 2
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Objectives" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
+layout_mode = 2
+theme = ExtResource("2_248l8")
+text = "Objectives"
+
+[node name="CollectCoins" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
 layout_mode = 2
 theme = ExtResource("2_ubils")
-text = "Forward"
+text = "Collect coins: gather all coins to complete the level."
+
+[node name="StayAlive" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
+layout_mode = 2
+theme = ExtResource("2_ubils")
+text = "Stay alive: avoid falling off the map or hitting 
+enemies (like the saws) to preserve your hearts."
+
+[node name="Explore" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
+layout_mode = 2
+theme = ExtResource("2_ubils")
+text = "Explore: look for glitches and checkpoints."
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_248l8")
+text = "Go back"
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7o006")
+bus = &"SFX"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

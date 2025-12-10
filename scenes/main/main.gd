@@ -51,6 +51,7 @@ func _restart_level() -> void:
 func _next_level() -> void:
 	_actual_level += 1
 	GameController.increment_level()
+	GameController.reset_level_data()
 	_delete_actual_level()
 	_create_level.call_deferred(_actual_level)
 

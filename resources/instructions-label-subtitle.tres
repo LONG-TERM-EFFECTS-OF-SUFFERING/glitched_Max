@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6wr680imqggl"]
+
+[ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="1_bjapc"]
+
+[resource]
+Label/colors/font_color = Color(0.7372549, 0.7372549, 0.7372549, 1)
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_bjapc")

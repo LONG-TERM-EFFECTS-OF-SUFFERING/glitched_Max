@@ -6,7 +6,8 @@ extends VBoxContainer
 func _on_new_game_pressed() -> void:
 	_click_sound.play()
 	await _click_sound.finished
-	GameController.reset_game_data()
+	GameController.reset_level()
+	GameController.reset_level_data()
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 
 
