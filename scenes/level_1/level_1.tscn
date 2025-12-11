@@ -95,7 +95,6 @@ transform = Transform3D(-0.674328, 0, -0.7384319, 0, 1, 0, 0.7384319, 0, -0.6743
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_bmd0r")
 autoplay = true
-bus = &"music"
 
 [node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
 environment = ExtResource("12_c5bgo")

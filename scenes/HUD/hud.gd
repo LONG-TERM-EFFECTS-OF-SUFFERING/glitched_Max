@@ -18,10 +18,12 @@ func _ready() -> void:
 	GameController.update_coins_labels.connect(_update_coins_labels)
 	GameController.lives_changed.connect(_update_lives)
 	GameController.update_stamina.connect(_on_stamina_changed)
+
 	if _stamina_bar:
 		_stamina_bar.max_value = 100.0
 		_stamina_bar.value = 50.0
 		_stamina_bar.show()
+
 	GameController.interaction_hint.connect(_on_toggle_interaction_hint)
 	GameController.display_dialog.connect(_show_dialog)
 	_update_coins_labels()
@@ -91,4 +93,3 @@ func _on_stamina_changed(current: float, maximum: float) -> void:
 	if _stamina_bar:
 		_stamina_bar.max_value = maximum
 		_stamina_bar.value = current
-		print("Stamina actualizada: ", current, "/", maximum)  # Debugt

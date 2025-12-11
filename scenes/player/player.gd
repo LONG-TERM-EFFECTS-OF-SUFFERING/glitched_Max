@@ -90,7 +90,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	_default_fov = _camera.fov
 	_current_stamina = max_stamina / 2.0  
-	GameController.update_stamina.connect(_on_stamina_changed)
 
 func _physics_process(delta: float) -> void:
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
@@ -375,15 +374,11 @@ func _apply_dash_camera_effects() -> void:
 	shake_tween.tween_property(self, "_camera_shake_offset", Vector3.ZERO, 0.1)
 
 func add_stamina(amount: float) -> void:
-	var old_stamina = _current_stamina
 	_current_stamina = min(_current_stamina + amount, max_stamina)
 	_update_stamina_ui()
 	
 func _update_stamina_ui() -> void:
 	GameController.update_stamina.emit(_current_stamina, max_stamina)
-
-func _on_stamina_changed() -> void:
-	pass  
 
 func get_stamina_percentage() -> float:
 	return (_current_stamina / max_stamina) * 100.0

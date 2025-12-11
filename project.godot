@@ -18,9 +18,6 @@ config/icon="uid://cyvwimibe3h5c"
 [autoload]
 
 GameController="*res://scripts/game_controller.gd"
-"<<<<<<<HEAD[global_group]player"=""
-"<<<<<<<HEAD[display]window/stretch/mode"="canvas_items"
-window/stretch/aspect="expand"
 
 [display]
 

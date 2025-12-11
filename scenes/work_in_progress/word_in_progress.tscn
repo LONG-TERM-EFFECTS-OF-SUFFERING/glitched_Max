@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdqhxqli0h81" path="res://scenes/kate/skin.tscn" id="3_v3tve"]
 [ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="4_wyo2o"]
 [ext_resource type="Script" uid="uid://dkm540higx3dj" path="res://scenes/work_in_progress/v_box_container.gd" id="5_jhapx"]
-[ext_resource type="Theme" uid="uid://dttkgr10omq45" path="res://resources/work_in_progress-button.tres" id="6_supoy"]
+[ext_resource type="Theme" uid="uid://d06rmg47byytt" path="res://resources/work_in_progress-button.tres" id="6_supoy"]
 [ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="7_0huh8"]
 [ext_resource type="AudioStream" uid="uid://dl6yw205f862m" path="res://assets/music/menus.wav" id="8_m4arb"]
 

@@ -5,7 +5,7 @@ signal update_coins_labels
 signal lives_changed
 signal display_dialog(image: Texture2D, text: String)
 signal interaction_hint(is_visible: bool)
-signal update_stamina(current: float, maximum: float)
+signal update_stamina(current: float, maximum: float)   # Used in player.gd & hud.gd
 
 var game: Data
 var _path: String = "res://savegame.tres"

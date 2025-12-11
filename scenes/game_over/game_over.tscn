@@ -4,7 +4,7 @@
 [ext_resource type="Environment" uid="uid://cb8fpas5whplq" path="res://resources/sky.tres" id="2_3iia1"]
 [ext_resource type="Script" uid="uid://ld1jkum3set4" path="res://scenes/game_over/v_box_container.gd" id="3_3mpp1"]
 [ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="3_tbth1"]
-[ext_resource type="Theme" uid="uid://7pmlvbnjr4ol" path="res://resources/game_over-button.tres" id="5_3iia1"]
+[ext_resource type="Theme" uid="uid://b6xjb6lvknpx5" path="res://resources/game_over-button.tres" id="5_3iia1"]
 [ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="6_rcoe2"]
 [ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="7_vdnea"]
 [ext_resource type="PackedScene" uid="uid://hy4lkfbrkmet" path="res://scenes/player/skin.tscn" id="8_7hf3m"]

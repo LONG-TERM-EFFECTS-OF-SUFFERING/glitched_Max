@@ -3,7 +3,7 @@
 [ext_resource type="Environment" uid="uid://cb8fpas5whplq" path="res://resources/sky.tres" id="1_3ovsr"]
 [ext_resource type="Script" uid="uid://cmbt56ndb1s4i" path="res://scenes/main_menu/main_menu.gd" id="1_5seab"]
 [ext_resource type="Script" uid="uid://dv6ufl7c4u6k1" path="res://scenes/main_menu/v_box_container.gd" id="1_knmh3"]
-[ext_resource type="Theme" uid="uid://ddkkfi4ojkboj" path="res://resources/main_menu-button.tres" id="3_3ftm5"]
+[ext_resource type="Theme" uid="uid://bwomlf1ufqxam" path="res://resources/main_menu-button.tres" id="3_3ftm5"]
 [ext_resource type="FontFile" uid="uid://q6asaymqordk" path="res://assets/fonts/FrancoisOne-Regular.ttf" id="3_thkx5"]
 [ext_resource type="Texture2D" uid="uid://dd3vxhtw1ibav" path="res://assets/environment/models/Textures/colormap.png" id="4_uqeha"]
 [ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="6_4xg86"]
@@ -725,7 +725,6 @@ text = "Instructions"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="Control/VBoxContainer"]
 stream = ExtResource("6_4xg86")
-bus = &"SFX"
 
 [node name="block-grass-large" type="MeshInstance3D" parent="."]
 top_level = true
@@ -838,7 +837,6 @@ skeleton = NodePath("")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_thkx5")
 autoplay = true
-bus = &"music"
 
 [connection signal="pressed" from="Control/VBoxContainer/NewGame" to="Control/VBoxContainer" method="_on_new_game_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Continue" to="Control/VBoxContainer" method="_on_continue_pressed"]
