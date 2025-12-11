@@ -29,7 +29,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53330696, 1.4334819, 8.4434
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.817072, 0)
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_0lhw3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.51448536, 2.5)
+visible = false
 
 [node name="CoinsContainer" parent="." instance=ExtResource("5_nubdk")]
 
@@ -1003,7 +1004,7 @@ transform = Transform3D(0.50820005, 0, 0, 0, 0.50820005, 0, 0, 0, 0.50820005, -6
 transform = Transform3D(0.50820005, 0, 0, 0, 0.50820005, 0, 0, 0, 0.50820005, -3.1999998, 0, 7.509)
 
 [node name="large_neon_platform249" parent="Platforms" instance=ExtResource("6_1uvjm")]
-transform = Transform3D(0.50820005, 0, 0, 0, 0.50820005, 0, 0, 0, 0.50820005, 2.8000002, 0, 4.509)
+transform = Transform3D(0.50820005, 0, 0, 0, 0.50820005, 0, 0, 0, 0.50820005, 2.8000002, -2, 4.509)
 
 [node name="large_neon_platform203" parent="Platforms" instance=ExtResource("6_1uvjm")]
 transform = Transform3D(0.50820005, 0, 0, 0, 0.50820005, 0, 0, 0, 0.50820005, -3.1999998, 0, 13.509)

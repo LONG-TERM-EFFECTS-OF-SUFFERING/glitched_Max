@@ -24,8 +24,7 @@ func _ready() -> void:
 		_stamina_bar.show()
 	GameController.interaction_hint.connect(_on_toggle_interaction_hint)
 	GameController.display_dialog.connect(_show_dialog)
-	_collected_coins_label.text = "0" + str(GameController.collected_coins_number)
-	_missing_coins_label.text = "0" + str(GameController.missing_coins_number)
+	_update_coins_labels()
 	_update_lives()
 	_dialog_box.hide()
 	_interaction_hint.visible = false
@@ -39,8 +38,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _update_coins_labels():
-	_collected_coins_label.text = "0" + str(GameController.collected_coins_number)
-	_missing_coins_label.text = "0" + str(GameController.missing_coins_number)
+	if GameController.collected_coins_number > 9:
+		_collected_coins_label.text = str(GameController.collected_coins_number)
+	else:
+		_collected_coins_label.text = "0" + str(GameController.collected_coins_number)
+	if GameController.missing_coins_number > 9:
+		_missing_coins_label.text = str(GameController.missing_coins_number)
+	else: 
+		_missing_coins_label.text = "0" + str(GameController.missing_coins_number)	
 
 func _update_lives() -> void:
 	# Clear existing hearts

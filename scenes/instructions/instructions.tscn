@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvdu24tltwu3l"]
+[gd_scene load_steps=18 format=3 uid="uid://cvdu24tltwu3l"]
 
-[ext_resource type="Script" uid="uid://bgm0c31cf166e" path="res://scenes/instructions/instructions.gd" id="1_eting"]
-[ext_resource type="Theme" uid="uid://bxsf6gy2wxfjo" path="res://resources/instructions-label-title.tres" id="1_urwme"]
+[ext_resource type="Script" path="res://scenes/instructions/instructions.gd" id="1_eting"]
+[ext_resource type="Theme" path="res://resources/instructions-label-title.tres" id="1_urwme"]
 [ext_resource type="Theme" uid="uid://b6wr680imqggl" path="res://resources/instructions-label-subtitle.tres" id="2_248l8"]
-[ext_resource type="Theme" uid="uid://b1sj8pnulu58g" path="res://resources/instructions-label-content.tres" id="2_ubils"]
+[ext_resource type="Theme" uid="uid://qwmxhlwla6j" path="res://resources/instructions-label-content.tres" id="2_ubils"]
 [ext_resource type="Theme" uid="uid://cpn55t71btrb3" path="res://resources/instructions-button.tres" id="4_248l8"]
 [ext_resource type="Texture2D" uid="uid://361vaq1qx0je" path="res://assets/images/controls_sprite_sheet.png" id="4_d3uck"]
 [ext_resource type="AudioStream" uid="uid://dya6v5twpu22b" path="res://assets/sounds/click.ogg" id="7_7o006"]
@@ -48,7 +48,15 @@ region = Rect2(115, 315, 70, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi0ub"]
 atlas = ExtResource("4_d3uck")
-region = Rect2(915, 615, 70, 70)
+region = Rect2(912.6341, 611.3756, 73.70819, 73.70819)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uux2u"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(400.0691, 825.8784, 97.19324, 49.31482)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbrc4"]
+atlas = ExtResource("4_d3uck")
+region = Rect2(103.10469, 817.99414, 91.53395, 63.726196)
 
 [node name="Instructions" type="Control"]
 layout_mode = 3
@@ -161,7 +169,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_ubils")
-text = "Jump"
+text = "Jump / Double Jump"
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/Jump"]
 layout_mode = 2
@@ -197,10 +205,32 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_oi0ub")
 expand_mode = 2
 
+[node name="AirDash" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/AirDash"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ubils")
+text = "Air dash"
+
+[node name="AirDash2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/AirDash"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/AirDash/AirDash2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_uux2u")
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/GridContainer/ControlsContainer/AirDash/AirDash2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hbrc4")
+
 [node name="ObjectivesContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 40
+theme_override_constants/separation = 25
 
 [node name="Objectives" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
 layout_mode = 2
@@ -210,18 +240,25 @@ text = "Objectives"
 [node name="CollectCoins" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
 layout_mode = 2
 theme = ExtResource("2_ubils")
-text = "Collect coins: gather all coins to complete the level."
+text = "Collect coins: gather all coins to complete the level
+and refill stamina."
 
 [node name="StayAlive" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
 layout_mode = 2
 theme = ExtResource("2_ubils")
 text = "Stay alive: avoid falling off the map or hitting 
-enemies (like the saws) to preserve your hearts."
+saws to preserve your hearts."
 
 [node name="Explore" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
 layout_mode = 2
 theme = ExtResource("2_ubils")
 text = "Explore: look for glitches and checkpoints."
+
+[node name="Explore2" type="Label" parent="PanelContainer/VBoxContainer/GridContainer/ObjectivesContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_ubils")
+text = "-"
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

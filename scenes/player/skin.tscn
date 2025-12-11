@@ -30,10 +30,10 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_f38ba")
 shader_parameter/aura_color = Color(0.846904, 0.92439497, 0.9925515, 1)
-shader_parameter/aura_thickness = 0.010000000475
+shader_parameter/aura_thickness = 0.5
 shader_parameter/aura_intensity = 0.630000029925
-shader_parameter/pulse_speed = 0.0
-shader_parameter/pulse_amount = 0.01200000057
+shader_parameter/pulse_speed = 5.346000253935
+shader_parameter/pulse_amount = 0.15200000722
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f703q"]
 resource_name = "colormap.002"

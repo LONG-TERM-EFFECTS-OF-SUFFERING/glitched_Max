@@ -160,7 +160,22 @@ grow_vertical = 0
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 590.0
-offset_right = 14.0
-offset_bottom = 617.0
+offset_left = 113.725
+offset_top = 561.325
+offset_right = 117.72501
+offset_bottom = 595.325
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_j3gwx")
+theme_override_font_sizes/font_size = 21
+
+[node name="Label" type="Label" parent="StaminaBar"]
+layout_mode = 0
+offset_left = -110.25
+offset_top = 0.045
+offset_right = -13.25
+offset_bottom = 30.045
+theme_override_fonts/font = ExtResource("6_j3gwx")
+theme_override_font_sizes/font_size = 21
+text = "Stamina:"
+horizontal_alignment = 1
+vertical_alignment = 1
