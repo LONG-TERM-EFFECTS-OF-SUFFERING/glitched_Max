@@ -43,7 +43,7 @@ func decrement_lives() -> void:
 func save_game() -> void:
 	# Update data object with current state
 	game.level = level
-	game.lives = game.lives
+	game.lives = lives
 	game.collected_coins = collected_coins
 
 	# Write to disk

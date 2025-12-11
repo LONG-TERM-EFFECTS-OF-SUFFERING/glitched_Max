@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Data" load_steps=2 format=3]
-
-[ext_resource type="Script" path="res://scripts/data.gd" id="1_lhbgx"]
-
-[resource]
-script = ExtResource("1_lhbgx")
-level = 1
-collected_coins = Array[String](["/root/Main/Level1/CoinsContainer/Coin2"])
